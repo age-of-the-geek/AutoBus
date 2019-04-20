@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    android:padding="5.0dip"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:textSize="24.0sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="33.0dip"
+        android:text="@string/please_choose_who_you_are" />
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:clipToPadding="false"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:id="@+id/passenger"
+            android:clickable="true"
+            android:layout_width="140.0dip"
+            android:layout_height="140.0dip"
+            android:layout_margin="12.0dip"
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="whoAreYou"
+            app:cardBackgroundColor="@color/common_google_signin_btn_text_light">
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ImageView
+                    android:background="@drawable/circlebgpurple"
+                    android:padding="5.0dip"
+                    android:layout_width="56.0dip"
+                    android:layout_height="64.0dip"
+                    android:src="@drawable/passenger" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#ffdcdcdc"
+                    android:id="@+id/passengertxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Passenger" />
+
+                <View
+                    android:background="@color/line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="2.0dip" />
+
+                <TextView
+                    android:textColor="#ffdcdcdc"
+                    android:gravity="center"
+                    android:id="@+id/passengertxt2"
+                    android:padding="5.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am a Passenger" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/relative"
+            android:clickable="true"
+            android:layout_width="140.0dip"
+            android:layout_height="140.0dip"
+            android:layout_margin="12.0dip"
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="whoAreYou"
+            app:cardBackgroundColor="@color/common_google_signin_btn_text_light">
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ImageView
+                    android:background="@drawable/circlebggreen"
+                    android:padding="5.0dip"
+                    android:layout_width="56.0dip"
+                    android:layout_height="64.0dip"
+                    android:src="@drawable/boy" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#ffdcdcdc"
+                    android:id="@+id/relativetxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Relative" />
+
+                <View
+                    android:background="@color/line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="2.0dip" />
+
+                <TextView
+                    android:textColor="#ffdcdcdc"
+                    android:gravity="center"
+                    android:id="@+id/relativetxt2"
+                    android:padding="5.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am a Relative" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:clipToPadding="false"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:id="@+id/driver"
+            android:clickable="true"
+            android:layout_width="140.0dip"
+            android:layout_height="140.0dip"
+            android:layout_margin="12.0dip"
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="whoAreYou"
+            app:cardBackgroundColor="@color/common_google_signin_btn_text_light">
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView
+                    android:background="@drawable/circlebgyellow"
+                    android:padding="8.0dip"
+                    android:layout_width="56.0dip"
+                    android:layout_height="64.0dip"
+                    android:src="@drawable/driver" />
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#ffdcdcdc"
+                    android:id="@+id/drivertxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Driver" />
+
+                <View
+                    android:background="@color/line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="2.0dip" />
+                <TextView
+                    android:textColor="#ffdcdcdc"
+                    android:gravity="center"
+                    android:id="@+id/drivertxt2"
+                    android:padding="5.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am a Driver" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/tkchecker"
+            android:clickable="true"
+            android:layout_width="140.0dip"
+            android:layout_height="140.0dip"
+            android:layout_margin="12.0dip"
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="whoAreYou"
+            app:cardBackgroundColor="@color/common_google_signin_btn_text_light">
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView
+                    android:background="@drawable/circlebgpink"
+                    android:padding="5.0dip"
+                    android:layout_width="56.0dip"
+                    android:layout_height="64.0dip"
+                    android:src="@drawable/ticket_collector" />
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#ffdcdcdc"
+                    android:id="@+id/tkcheckertxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Ticket Checker" />
+                <View
+                    android:background="@color/line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="2.0dip" />
+                <TextView
+                    android:textColor="#ffdcdcdc"
+                    android:gravity="center"
+                    android:id="@+id/tkcheckertxt2"
+                    android:padding="5.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I'm a TicketChecker" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:clipToPadding="false"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:id="@+id/subadmin"
+            android:clickable="true"
+            android:layout_width="140.0dip"
+            android:layout_height="140.0dip"
+            android:layout_margin="12.0dip"
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="whoAreYou"
+            app:cardBackgroundColor="@color/common_google_signin_btn_text_light">
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView
+                    android:background="@drawable/circlebgyellow"
+                    android:padding="5.0dip"
+                    android:layout_width="56.0dip"
+                    android:layout_height="64.0dip" android:src="@drawable/subadmin" />
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#ffdcdcdc"
+                    android:id="@+id/subadmintxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Sub-Admin" />
+                <View
+                    android:background="@color/line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="2.0dip" />
+                <TextView
+                    android:textColor="#ffdcdcdc"
+                    android:gravity="center"
+                    android:id="@+id/subadmintxt2"
+                    android:padding="5.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am a Sub-Admin" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/admin"
+            android:clickable="true"
+            android:layout_width="140.0dip"
+            android:layout_height="140.0dip"
+            android:layout_margin="12.0dip"
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="whoAreYou"
+            app:cardBackgroundColor="@color/common_google_signin_btn_text_light">
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView
+                    android:background="@drawable/circlebggreen"
+                    android:padding="5.0dip"
+                    android:layout_width="56.0dip"
+                    android:layout_height="64.0dip"
+                    android:src="@drawable/manager" />
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#ffdcdcdc"
+                    android:id="@+id/admintxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:text="Admin" />
+                <View
+                    android:background="@color/line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:layout_margin="2.0dip" />
+                <TextView
+                    android:textColor="#ffdcdcdc"
+                    android:gravity="center"
+                    android:id="@+id/admintxt2"
+                    android:padding="2.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am the Admin" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</LinearLayout>

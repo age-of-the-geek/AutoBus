@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="horizontal"
+    android:background="@drawable/bg"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_below="@id/view"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:id="@id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0.0dip">
+
+        <ImageView
+            android:id="@id/usrimg"
+            android:layout_width="90.0dip"
+            android:layout_height="90.0dip"
+            android:layout_marginBottom="18.0dip"
+            android:src="@drawable/boy" />
+        <EditText
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"
+            android:gravity="center"
+            android:id="@+id/UEmail"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="270.0dip"
+            android:layout_height="50.0dip"
+            android:layout_marginTop="6.0dip"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+        <EditText
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"
+            android:gravity="center"
+            android:id="@+id/UPassword"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="270.0dip"
+            android:layout_height="50.0dip"
+            android:layout_marginTop="6.0dip"
+            android:hint="Password"
+            android:inputType="textPassword" />
+        <Button android:textSize="22.0dip"
+            android:textColor="#ff000000"
+            android:id="@id/loginbtn"
+            android:background="@drawable/button_style_selector"
+            android:layout_width="270.0dip"
+            android:layout_height="50.0dip"
+            android:layout_marginTop="40.0dip"
+            android:text="Login"
+
+            android:textAllCaps="false"
+            android:fontFamily="verdana" />
+    </LinearLayout>
+</LinearLayout>

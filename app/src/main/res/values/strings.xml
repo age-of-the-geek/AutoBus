@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AutoBus</string>
+    <string name="welcome_text">Book Your Ride The EasyWay</string>
+    <string name="please_choose_who_you_are">Please Choose Who You Are</string>
+    <string name="autobus">AutoBus</string>
+    <string name="press_scan_to_scan_the_ticket_qr_code">Press Scan to Scan the Ticket Qr-Code</string>
+    <string name="please_enable_gps_for_tracking">Please Enable GPS for Tracking</string>
+    <string name="login_with_google">Login With Google</string>
+</resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="horizontal"
+    android:background="@drawable/bg"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_below="@+id/view"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/usrimg"
+            android:layout_width="90.0dip"
+            android:layout_height="90.0dip"
+            android:src="@drawable/add_user_image" />
+
+        <TextView
+            android:textSize="30.0sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10.0dip"
+            android:text="DP" />
+        <EditText android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"
+            android:gravity="center"
+            android:id="@+id/name"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="270.0dip"
+            android:layout_height="50.0dip"
+            android:hint="Username"
+            android:inputType="text" />
+        <EditText
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"
+            android:gravity="center"
+            android:id="@+id/email"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="270.0dip"
+            android:layout_height="50.0dip"
+            android:layout_marginTop="6.0dip"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"
+            android:gravity="center"
+            android:id="@+id/password"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="270.0dip"
+            android:layout_height="50.0dip"
+            android:layout_marginTop="6.0dip"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:textSize="18.0sp"
+            android:textColor="#ff000000"
+            android:id="@+id/signup"
+            android:background="@drawable/button_style_selector"
+            android:layout_width="270.0dip"
+            android:layout_height="45.0dip"
+            android:layout_marginTop="20.0dip"
+            android:text="Signup"
+            android:textAllCaps="false" />
+
+        <Button
+            android:textSize="18.0sp"
+            android:textColor="#ff000000"
+            android:id="@+id/loginbtn"
+            android:background="@drawable/button_style_selector"
+            android:layout_width="270.0dip"
+            android:layout_height="45.0dip"
+            android:layout_marginTop="7.0dip"
+            android:text="Login"
+            android:textAllCaps="false" />
+        <TextView
+            android:textSize="15.0sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or"
+            android:textAllCaps="false" />
+
+        <Button
+            android:drawableStart="@drawable/ic_google_logo"
+            android:background="@drawable/round_bg"
+            android:textColor="#ff000000"
+            android:id="@+id/glogin"
+            android:layout_width="270.0dip"
+            android:layout_height="50.0dip"
+            android:layout_marginTop="4.0dip"
+            android:text="@string/login_with_google"
+             />
+    </LinearLayout>
+</LinearLayout>

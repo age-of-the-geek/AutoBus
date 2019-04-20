@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "492413294880",
+    "firebase_url": "https://autobus-a6201.firebaseio.com",
+    "project_id": "autobus-a6201",
+    "storage_bucket": "autobus-a6201.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492413294880:android:88c3023fa4ff17e6",
+        "android_client_info": {
+          "package_name": "com.autobus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492413294880-idsts4tvgrq2ee1moo521l5v9ip7v83m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.autobus",
+            "certificate_hash": "11197207062c05b97acc5ef47ab05988bbf0a173"
+          }
+        },
+        {
+          "client_id": "492413294880-ar3g4oe6bs8nhe02ilbsbh37mqltha3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEtWCLm4X5wiujAyFImweZGEInzy069gc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492413294880-ar3g4oe6bs8nhe02ilbsbh37mqltha3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
