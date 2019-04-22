@@ -74,6 +74,10 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
     }
 
     private void login() {
+
+        Intent next = new Intent(subadmin_login.this, subadmin_home.class);
+        startActivity(next);
+
         //Getting values from edit texts
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();

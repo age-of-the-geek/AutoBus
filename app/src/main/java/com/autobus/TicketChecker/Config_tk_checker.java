@@ -2,7 +2,7 @@ package com.autobus.TicketChecker;
 
 public class Config_tk_checker {
     //URL to our tk_checker_login.php file
-    public static final String LOGIN_URL = "http://192.168.10.11/AutoBus/tk_checker_login.php";
+    public static final String LOGIN_URL = "http://192.168.10.4/AutoBus/tk_checker_login.php";
 
     //Keys for email and password as defined in our $_POST['key'] in tk_checker_login.php
     public static final String KEY_EMAIL = "emai";
