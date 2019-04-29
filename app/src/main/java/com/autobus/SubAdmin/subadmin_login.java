@@ -31,6 +31,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
     private EditText editTextPassword;
     private Button buttonLogin;
 
+
     //boolean variable to check user is logged in or not
     //initially it is false
     private boolean loggedIn = false;
@@ -75,8 +76,6 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
 
     private void login() {
 
-        Intent next = new Intent(subadmin_login.this, subadmin_home.class);
-        startActivity(next);
 
         //Getting values from edit texts
         final String email = editTextEmail.getText().toString().trim();

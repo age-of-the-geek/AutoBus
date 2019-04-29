@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Passenger.passenger_home" />
+        <activity android:name=".Passenger.Bus_Details"></activity>
         <activity android:name=".Passenger.verify_phone" />
         <activity android:name=".TicketChecker.ticket_checker_home" />
         <activity android:name=".Passenger.passenger_auth" />
