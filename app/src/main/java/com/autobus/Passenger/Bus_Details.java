@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bus_Details extends AppCompatActivity {
-    TextView logout;
+
     Toolbar toolbar;
-    private static final String URL_PRODUCTS = "http://192.168.10.17/AutoBus/api.php";
+    private static final String URL_PRODUCTS = "http://192.168.10.6/AutoBus/show_bus_details.php";
 
     //a list to store all the products
     List<bus_data> productList;
@@ -45,7 +45,7 @@ public class Bus_Details extends AppCompatActivity {
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout);
 
-        logout = findViewById(R.id.logoutBtn);
+
         toolbar = findViewById(R.id.passenger_toolbar);
         setSupportActionBar(toolbar);
 

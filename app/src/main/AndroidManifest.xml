@@ -36,6 +36,7 @@
         <activity android:name=".SubAdmin.subadmin_home" />
         <activity android:name=".Admin.admin_home" />
         <activity android:name=".Admin.admin_login" />
+        <activity android:name=".SubAdmin.UploadImage" />
         <activity android:name=".Relative.relative_home" />
         <activity
             android:name=".Activities.welcome_screen"

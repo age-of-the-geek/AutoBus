@@ -4,7 +4,7 @@ public class Config_subadmin {
 
 
         //URL to our tk_checker_login.php file
-        public static final String LOGIN_URL = "http://192.168.10.4/AutoBus/subadmin_login.php";
+        public static final String LOGIN_URL = "http://192.168.10.6/AutoBus/subadmin_login.php";
 
         //Keys for email and password as defined in our $_POST['key'] in tk_checker_login.php
         public static final String KEY_EMAIL = "email";

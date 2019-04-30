@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/bg"
-    >
+    android:fitsSystemWindows="true">
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       >
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar_subadmin"
@@ -30,19 +27,27 @@
             android:textSize="25dp" />
 
 
+        <Button
+            android:onClick="open_popup"
+            android:id="@+id/uploadimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"/>
         <!--  Name Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            >
-            <EditText android:id="@+id/bus_company"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/bus_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="Bus Company" />
+                android:hint="Bus Company"
+                android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
+
 
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
@@ -50,7 +55,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/bus_number"
+
+            <EditText
+                android:id="@+id/bus_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Bus Number" />
@@ -62,90 +69,116 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/total_seats"
+
+            <EditText
+                android:id="@+id/total_seats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Total Seats"/>
+                android:hint="Total Seats" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/available_seats"
+
+            <EditText
+                android:id="@+id/available_seats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Available Seats"/>
+                android:hint="Available Seats" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/leaving_time"
+
+            <EditText
+                android:id="@+id/leaving_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bus Leaving Time"/>
+                android:hint="Bus Leaving Time" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/reaching_time"
+
+            <EditText
+                android:id="@+id/reaching_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bus Reaching Time"/>
+                android:hint="Bus Reaching Time" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/driver_name"
+
+            <EditText
+                android:id="@+id/driver_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Driver Name"/>
+                android:hint="Driver Name" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/tk_checker_name"
+
+            <EditText
+                android:id="@+id/tk_checker_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ticket Checker Name"/>
+                android:hint="Ticket Checker Name" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/break_time"
+
+            <EditText
+                android:id="@+id/break_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bus Break Time"/>
+                android:hint="Bus Break Time" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/rating"
+
+            <EditText
+                android:id="@+id/rating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bus Rating"/>
+                android:hint="Bus Rating" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/route"
+
+            <EditText
+                android:id="@+id/route"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bus Route"/>
+                android:hint="Bus Route" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
@@ -156,8 +189,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Save Data"/>
-
+            android:text="Save Data" />
 
 
     </LinearLayout>

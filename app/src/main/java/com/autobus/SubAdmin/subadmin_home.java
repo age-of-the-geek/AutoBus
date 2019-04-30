@@ -1,9 +1,12 @@
 package com.autobus.SubAdmin;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -37,12 +40,13 @@ import java.util.Map;
 public class subadmin_home extends AppCompatActivity {
 
 
-
+    Dialog dialog;
+    Button uploadimage;
     private TextView usrname;
     private EditText bus_number, total_seats, available_seats, bus_route, bus_leaving_time, bus_reaching_time,
             bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company;
     private AppCompatButton savebtn;
-    private static String URL_SEND = "http://192.168.10.4/AutoBus/bus_details.php";
+    private static String URL_SEND = "http://192.168.10.6/AutoBus/bus_details.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class subadmin_home extends AppCompatActivity {
         setSupportActionBar(toolbar_default);
         getSupportActionBar().setTitle("SubAdmin Dashboard");
 
+        uploadimage = findViewById(R.id.uploadimage);
         bus_number = findViewById(R.id.bus_number);
         total_seats = findViewById(R.id.total_seats);
         available_seats = findViewById(R.id.available_seats);
@@ -66,6 +71,8 @@ public class subadmin_home extends AppCompatActivity {
         bus_company = findViewById(R.id.bus_company);
         usrname = findViewById(R.id.usrname);
         savebtn = findViewById(R.id.btn_save);
+        dialog = new Dialog(this);
+
 
         //Fetching email from shared preferences
         SharedPreferences sharedPreferences = getSharedPreferences(Config_subadmin.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -82,6 +89,13 @@ public class subadmin_home extends AppCompatActivity {
         });
 
 
+    }
+
+
+
+    public void open_popup(View v) {
+        Intent i = new Intent(subadmin_home.this, UploadImage.class);
+        startActivity(i);
     }
 
     private void saveData() {
