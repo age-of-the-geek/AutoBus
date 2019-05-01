@@ -17,18 +17,10 @@
             android:layout_height="90dp"
             android:padding="4dp" />
 
-        <TextView
-            android:layout_below="@+id/imageView"
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bus Company"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/busdetail"/>
+
         <TextView
             android:padding="5dp"
             android:layout_marginLeft="120dp"
-            android:layout_toRightOf="@+id/busdetail"
             android:id="@+id/bus_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,21 +29,11 @@
             android:textColor="#000000" />
 
 
-        <TextView
-            android:layout_marginTop="17dp"
-            android:layout_toLeftOf="@+id/bus_company"
-            android:layout_below="@+id/busdetail"
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bus Number"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/busnumber"/>
+
 
         <TextView
             android:padding="5dp"
             android:layout_marginLeft="120dp"
-            android:layout_toRightOf="@+id/busnumber"
             android:id="@+id/bus_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,21 +42,11 @@
             android:text="GJN-1234"
             android:textSize="20dp"
             android:textColor="#000000" />
-        <TextView
-            android:layout_marginTop="17dp"
-            android:layout_toLeftOf="@+id/bus_company"
-            android:layout_below="@+id/busnumber"
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total Seats"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/totalseats"/>
+
 
         <TextView
             android:padding="5dp"
             android:layout_marginLeft="120dp"
-            android:layout_toRightOf="@+id/totalseats"
             android:id="@+id/total_seats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,16 +58,6 @@
             android:paddingRight="15dp"
             android:text="70"
             />
-        <TextView
-            android:layout_marginTop="17dp"
-            android:layout_toLeftOf="@+id/total_seats"
-            android:layout_below="@+id/total_seats"
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Available Seats"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/availableseats"/>
 
         <TextView
             android:paddingLeft="15dp"
