@@ -99,7 +99,8 @@ public class Bus_Details extends AppCompatActivity {
                                         data.getString("bus_ticketchecker_name"),
                                         data.getString("bus_rating"),
                                         data.getString("bus_break_time"),
-                                        data.getString("bus_company")
+                                        data.getString("bus_company"),
+                                        data.getString("bus_image")
                                 ));
                             }
 

@@ -44,7 +44,7 @@ public class subadmin_home extends AppCompatActivity {
     Button uploadimage;
     private TextView usrname;
     private EditText bus_number, total_seats, available_seats, bus_route, bus_leaving_time, bus_reaching_time,
-            bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company;
+            bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company,day;
     private AppCompatButton savebtn;
     private static String URL_SEND = "http://192.168.10.6/AutoBus/bus_details.php";
 
@@ -70,6 +70,7 @@ public class subadmin_home extends AppCompatActivity {
         bus_break_time = findViewById(R.id.break_time);
         bus_company = findViewById(R.id.bus_company);
         usrname = findViewById(R.id.usrname);
+        day = findViewById(R.id.day);
         savebtn = findViewById(R.id.btn_save);
         dialog = new Dialog(this);
 
@@ -112,6 +113,7 @@ public class subadmin_home extends AppCompatActivity {
         final String bus_ratingS = this.bus_rating.getText().toString().trim();
         final String bus_ticketchecker_nameS = this.bus_ticketchecker_name.getText().toString().trim();
         final String bus_break_timeS = this.bus_break_time.getText().toString().trim();
+        final String dayS = this.day.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEND,
                 new Response.Listener<String>() {
@@ -153,6 +155,7 @@ public class subadmin_home extends AppCompatActivity {
                 params.put("available_seats", available_seatsS);
                 params.put("total_seats", total_seatsS);
                 params.put("bus_number", bus_numberS);
+                params.put("day", dayS);
                 return params;
             }
         };

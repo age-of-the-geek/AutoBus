@@ -40,6 +40,10 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
 
         //loading the image
 
+        Glide.with(mCtx)
+                .load(busDetail.getImage())
+                .into(holder.imageView);
+
         holder.bus_number.setText(busDetail.getbus_number());
         holder.total_seats.setText(busDetail.getbus_total_seats());
         holder.available_seats.setText(String.valueOf(busDetail.getbus_available_seats()));
@@ -62,11 +66,13 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
 
        TextView bus_number, total_seats, available_seats, bus_route, bus_leaving_time, bus_reaching_time,
                 bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company;
+       ImageView imageView;
 
 
         public bus_dataViewHolder(View itemView) {
             super(itemView);
 
+            imageView = itemView.findViewById(R.id.imageView);
             bus_number = itemView.findViewById(R.id.bus_number);
             total_seats = itemView.findViewById(R.id.total_seats);
             available_seats = itemView.findViewById(R.id.available_seats);

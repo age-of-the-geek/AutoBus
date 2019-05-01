@@ -4,6 +4,7 @@ public class bus_data {
 
 
     private int id;
+    private String image;
     private String bus_number;
     private String bus_total_seats;
     private String bus_available_seats;
@@ -18,8 +19,10 @@ public class bus_data {
 
     public bus_data(int id,String bus_number,String bus_total_seats,String bus_available_seats,
                     String bus_route,String bus_leaving_time,String bus_reaching_time,
-                    String bus_driver_name,String bus_ticketchecker_name,String bus_rating,String bus_break_time,String bus_company) {
+                    String bus_driver_name,String bus_ticketchecker_name,String bus_rating,String
+                            bus_break_time,String bus_company, String bus_image) {
         this.id = id;
+        this.image = bus_image;
         this.bus_number = bus_number;
         this.bus_total_seats = bus_total_seats;
         this.bus_available_seats = bus_available_seats;
@@ -35,6 +38,10 @@ public class bus_data {
 
     public int getId() {
         return id;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public String getbus_number() {
@@ -72,5 +79,6 @@ public class bus_data {
     public String getbus_company() {
         return bus_company;
     }
+
 }
 
