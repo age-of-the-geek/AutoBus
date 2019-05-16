@@ -21,7 +21,7 @@ public class relative_home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.relative_signup_activity);
+        setContentView(R.layout.relative_home_activity);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -30,18 +30,13 @@ public class relative_home extends AppCompatActivity {
         textEmail = findViewById(R.id.textViewEmail);
 
 
-        Toolbar toolbar_default = findViewById(R.id.toolbar_driver);
+        Toolbar toolbar_default = findViewById(R.id.toolbar_relative);
         setSupportActionBar(toolbar_default);
         getSupportActionBar().setTitle("Relative Monitoring");
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-        Glide.with(this)
-                .load(user.getPhotoUrl())
-                .into(imageView);
 
-        textName.setText(user.getDisplayName());
-        textEmail.setText(user.getEmail());
     }
 
     @Override

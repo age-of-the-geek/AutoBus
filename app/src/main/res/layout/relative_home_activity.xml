@@ -4,29 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".Relative.relative_signup"
-    android:background="#ffffff">
+    tools:context=".Relative.relative_signup">
 
     <include
         android:id="@+id/toolbar_relative"
         layout="@layout/toolbar_default"></include>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
 
     <TextView
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/textViewName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:text="Welcome to Monitoring Panel.
+         PleaseEnter the Secret Ticket Code to Start Monitoring"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
 
