@@ -14,8 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class relative_home extends AppCompatActivity {
 
-    ImageView imageView;
-    TextView textName, textEmail;
+    TextView textName;
     FirebaseAuth mAuth;
 
     @Override
@@ -25,9 +24,9 @@ public class relative_home extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        imageView = findViewById(R.id.imageView);
+
         textName = findViewById(R.id.textViewName);
-        textEmail = findViewById(R.id.textViewEmail);
+
 
 
         Toolbar toolbar_default = findViewById(R.id.toolbar_relative);
