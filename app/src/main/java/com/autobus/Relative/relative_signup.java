@@ -65,7 +65,7 @@ public class relative_signup extends AppCompatActivity  {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent login = new Intent(getApplicationContext(), tk_checker_login.class);
+                Intent login = new Intent(getApplicationContext(), relative_login.class);
                 startActivity(login);
                 finish();
             }

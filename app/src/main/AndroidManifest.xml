@@ -29,6 +29,7 @@
         <activity android:name=".Passenger.passenger_auth" />
         <activity android:name=".Activities.landing_screen" />
         <activity android:name=".Relative.relative_signup" />
+        <activity android:name=".Relative.relative_login" />
         <activity android:name=".TicketChecker.tk_checker_login" />
         <activity android:name=".Driver.driver_login" />
         <activity android:name=".Driver.driver_home" />

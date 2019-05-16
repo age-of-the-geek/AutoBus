@@ -24,7 +24,7 @@
             android:src="@drawable/boy" />
 
         <EditText
-            android:id="@+id/UEmail"
+            android:id="@+id/REmail"
             android:layout_width="270.0dip"
             android:layout_height="50.0dip"
             android:layout_marginTop="6.0dip"
@@ -36,7 +36,7 @@
             android:textColorHint="#ffffffff" />
 
         <EditText
-            android:id="@+id/UPassword"
+            android:id="@+id/RPassword"
             android:layout_width="270.0dip"
             android:layout_height="50.0dip"
             android:layout_marginTop="6.0dip"
@@ -48,7 +48,8 @@
             android:textColorHint="#ffffffff" />
 
         <Button
-            android:id="@id/loginbtn"
+            android:onClick="Rlogin"
+            android:id="@+id/Rbtn"
             android:layout_width="270.0dip"
             android:layout_height="50.0dip"
             android:layout_marginTop="40.0dip"
