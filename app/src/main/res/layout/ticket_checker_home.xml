@@ -32,6 +32,8 @@
         android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 
+
+
     <Button
         android:layout_centerHorizontal="true"
         android:id="@+id/scan_btn"

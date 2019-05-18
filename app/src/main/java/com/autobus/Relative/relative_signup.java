@@ -120,7 +120,16 @@ public class relative_signup extends AppCompatActivity  {
     }
 
 
+    /*@Override
+    protected void onStart() {
+        super.onStart();
 
+        //if the user is not logged in
+        //opening the login activity
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(relative_signup.this, relative_home.class));
+        }
+    }*/
     private void CreateAccount(String emailadd, final String usrname, String pass) {
 
         mAuth.createUserWithEmailAndPassword(emailadd,pass)

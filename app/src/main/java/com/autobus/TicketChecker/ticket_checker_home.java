@@ -58,6 +58,7 @@ public class ticket_checker_home extends AppCompatActivity {
 
         //Showing the current logged in email to textview
         usrname.setText("User: " + email);
+
     }
 
 
