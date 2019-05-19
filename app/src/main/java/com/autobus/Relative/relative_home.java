@@ -4,12 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.autobus.Driver.User;
+import com.autobus.Driver.UserAdapter;
 import com.autobus.Driver.driver_home;
 import com.autobus.R;
 import com.bumptech.glide.Glide;
@@ -17,15 +22,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class relative_home extends AppCompatActivity {
 
     TextView textName;
     FirebaseAuth mAuth;
+
     public static final String NODE_USERS = "users";
 
     @Override
@@ -34,6 +47,7 @@ public class relative_home extends AppCompatActivity {
         setContentView(R.layout.relative_home_activity);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseMessaging.getInstance().subscribeToTopic("updates");
 
 
         textName = findViewById(R.id.textViewName);
@@ -57,14 +71,11 @@ public class relative_home extends AppCompatActivity {
                         // Get new Instance ID token
                         String token = task.getResult().getToken();
 
-                        // Log and toast
-                        Toast.makeText(relative_home.this, "Token:-> " + token, Toast.LENGTH_LONG).show();
+
                         saveToken(token);
                     }
                 });
     }
-    
-
 
 
     private void saveToken(String token) {

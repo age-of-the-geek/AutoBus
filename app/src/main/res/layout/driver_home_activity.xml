@@ -32,13 +32,27 @@
         android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 
-    <TextView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/Nrecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/gps">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/Nprogressbar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_margin="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewToken"
-        android:layout_below="@+id/gps"
-        android:layout_margin="30dp"
-        />
+        android:id="@+id/send_noti_btn"
+        android:layout_below="@+id/Nprogressbar"
+        android:text="Send Departure Notification"/>
 
 
 

@@ -13,27 +13,46 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.autobus.Activities.landing_screen;
 import com.autobus.R;
+import com.autobus.Relative.relative_home;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class driver_home extends AppCompatActivity {
 
     private TextView usrname, textView;
-    private static final String CHANNEL_ID = "autobus";
+    public static final String CHANNEL_ID = "autobus";
     private static final String CHANNEL_NAME = "AutoBus";
     private static final String CHANNEL_DESC = "AutoBus Notifications";
+    private List<User> userList;
+    FirebaseAuth mAuth;
+
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +64,9 @@ public class driver_home extends AppCompatActivity {
         getSupportActionBar().setTitle("Driver Dashboard");
 
         usrname = findViewById(R.id.usrname);
-        textView = findViewById(R.id.textViewToken);
+        progressBar = findViewById(R.id.Nprogressbar);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //Fetching email from shared preferences
         SharedPreferences sharedPreferences = getSharedPreferences(Config_Driver.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -53,6 +74,7 @@ public class driver_home extends AppCompatActivity {
 
         //Showing the current logged in email to textview
         usrname.setText("User: " + email);
+        loadUsers();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
@@ -62,23 +84,43 @@ public class driver_home extends AppCompatActivity {
         }
 
 
-
-
     }
 
 
-    private void displayNotification() {
+    private void loadUsers() {
 
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this, CHANNEL_ID)
-                        .setSmallIcon(R.drawable.logo)
-                        .setContentTitle("Hurray! It is working...")
-                        .setContentText("Your first notification..")
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        progressBar.setVisibility(View.VISIBLE);
+        userList = new ArrayList<>();
+        recyclerView = findViewById(R.id.Nrecyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        NotificationManagerCompat mNotificationMgr = NotificationManagerCompat.from(this);
-        mNotificationMgr.notify(1, mBuilder.build());
+        DatabaseReference dbUsers = FirebaseDatabase.getInstance().getReference("users");
+        dbUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.GONE);
+                if (dataSnapshot.exists()) {
 
+                    for (DataSnapshot dsUser : dataSnapshot.getChildren()) {
+
+                        User user = dsUser.getValue(User.class);
+                        userList.add(user);
+
+                    }
+
+                    UserAdapter adapter = new UserAdapter(driver_home.this, userList);
+                    recyclerView.setAdapter(adapter);
+
+                } else {
+                    Toast.makeText(driver_home.this, "No user found", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
@@ -141,5 +183,13 @@ public class driver_home extends AppCompatActivity {
             logout();
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(driver_home.this, landing_screen.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();  // optional depending on your needs
     }
 }
