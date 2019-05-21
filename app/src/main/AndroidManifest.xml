@@ -24,6 +24,7 @@
         android:testOnly="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Driver.SendNotificationActivity" />
+        <activity android:name=".Passenger.BusDetailsList" />
         <activity android:name=".Passenger.Bus_Details" />
         <activity android:name=".Passenger.verify_phone" />
         <activity android:name=".TicketChecker.ticket_checker_home" />

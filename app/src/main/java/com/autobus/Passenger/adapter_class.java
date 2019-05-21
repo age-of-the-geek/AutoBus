@@ -1,6 +1,7 @@
 package com.autobus.Passenger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -58,6 +59,31 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
         holder.bus_company.setText(String.valueOf(busDetail.getbus_company()));
         holder.bus_route.setText(String.valueOf(busDetail.getbus_route()));
         holder.bus_day.setText(String.valueOf(busDetail.getDay()));
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mCtx,BusDetailsList.class);
+                // passing data to the book activity
+                intent.putExtra("Image",productList.get(position).getImage());
+                intent.putExtra("Route",productList.get(position).getbus_route());
+                intent.putExtra("Company",productList.get(position).getbus_company());
+                intent.putExtra("TotalSeats",productList.get(position).getbus_total_seats());
+                intent.putExtra("AvailableSeats",productList.get(position).getbus_available_seats());
+                intent.putExtra("LeavingTime",productList.get(position).getbus_leaving_time());
+                intent.putExtra("ReachingTime",productList.get(position).getbus_reaching_time());
+                intent.putExtra("DriverName",productList.get(position).getbus_driver_name());
+                intent.putExtra("TicketCheckerName",productList.get(position).getbus_ticketchecker_name());
+                intent.putExtra("Rating",productList.get(position).getbus_rating());
+                intent.putExtra("BreakTime",productList.get(position).getbus_break_time());
+                intent.putExtra("Number",productList.get(position).getbus_number());
+                intent.putExtra("Day",productList.get(position).getDay());
+
+                // start the activity
+                mCtx.startActivity(intent);
+
+            }
+        });
 
     }
 
