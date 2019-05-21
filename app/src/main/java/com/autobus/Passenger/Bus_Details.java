@@ -3,6 +3,7 @@ package com.autobus.Passenger;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +31,7 @@ import java.util.List;
 public class Bus_Details extends AppCompatActivity {
 
     Toolbar toolbar;
-    private static final String URL_PRODUCTS = "http://192.168.10.19/AutoBus/show_bus_details.php";
+    private static final String URL_PRODUCTS = "http://192.168.10.13/AutoBus/show_bus_details.php";
 
     //a list to store all the products
     List<bus_data> productList;
@@ -43,8 +44,6 @@ public class Bus_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_details);
 
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout);
-
 
         toolbar = findViewById(R.id.passenger_toolbar);
         setSupportActionBar(toolbar);
@@ -52,7 +51,7 @@ public class Bus_Details extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recylcerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 
 
         //initializing the productlist
@@ -88,7 +87,7 @@ public class Bus_Details extends AppCompatActivity {
 
                                 //adding the product to product list
                                 productList.add(new bus_data(
-                                        data.getInt("id"),
+
                                         data.getString("bus_number"),
                                         data.getString("bus_total_seats"),
                                         data.getString("bus_available_seats"),
@@ -100,7 +99,8 @@ public class Bus_Details extends AppCompatActivity {
                                         data.getString("bus_rating"),
                                         data.getString("bus_break_time"),
                                         data.getString("bus_company"),
-                                        data.getString("bus_image")
+                                        data.getString("bus_image"),
+                                        data.getString("day")
                                 ));
                             }
 
@@ -127,7 +127,7 @@ public class Bus_Details extends AppCompatActivity {
     }
 
 
-    public void logout (View v){
+    public void logout(View v) {
 
         FirebaseAuth.getInstance().signOut();
 

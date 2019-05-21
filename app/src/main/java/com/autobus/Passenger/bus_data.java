@@ -3,7 +3,8 @@ package com.autobus.Passenger;
 public class bus_data {
 
 
-    private int id;
+
+    private String day;
     private String image;
     private String bus_number;
     private String bus_total_seats;
@@ -17,11 +18,14 @@ public class bus_data {
     private String bus_break_time;
     private String bus_company;
 
-    public bus_data(int id,String bus_number,String bus_total_seats,String bus_available_seats,
-                    String bus_route,String bus_leaving_time,String bus_reaching_time,
-                    String bus_driver_name,String bus_ticketchecker_name,String bus_rating,String
-                            bus_break_time,String bus_company, String bus_image) {
-        this.id = id;
+
+
+    public bus_data(String bus_number, String bus_total_seats, String bus_available_seats,
+                    String bus_route, String bus_leaving_time, String bus_reaching_time,
+                    String bus_driver_name, String bus_ticketchecker_name, String bus_rating, String
+                            bus_break_time, String bus_company, String bus_image, String day) {
+
+        this.day = day;
         this.image = bus_image;
         this.bus_number = bus_number;
         this.bus_total_seats = bus_total_seats;
@@ -36,10 +40,9 @@ public class bus_data {
         this.bus_company = bus_company;
     }
 
-    public int getId() {
-        return id;
+    public String getDay() {
+        return day;
     }
-
     public String getImage() {
         return image;
     }

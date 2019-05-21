@@ -3,7 +3,7 @@ package com.autobus.Admin;
 public class Config_Admin {
 
     //URL to our tk_checker_login.php file
-    public static final String LOGIN_URL = "http://192.168.10.4/AutoBus/admin_login.php";
+    public static final String LOGIN_URL = "http://192.168.10.13/AutoBus/admin_login.php";
 
     //Keys for email and password as defined in our $_POST['key'] in tk_checker_login.php
     public static final String KEY_EMAIL = "email";

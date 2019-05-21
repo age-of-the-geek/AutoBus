@@ -116,6 +116,7 @@ public class admin_login extends AppCompatActivity implements View.OnClickListen
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(admin_login.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
                         //You can handle error here if you want
                     }
                 }) {
