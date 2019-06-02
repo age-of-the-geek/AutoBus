@@ -24,7 +24,7 @@ public class relative_login extends AppCompatActivity {
     EditText UPass;
     String EmailID;
     String Pass;
-    Button Rlogin;
+    Button Rlogin,RBsignup;
     private static final String TAG = "Login";
     private FirebaseAuth mAuth;
 
@@ -36,9 +36,16 @@ public class relative_login extends AppCompatActivity {
         UEmail = (EditText) findViewById(R.id.REmail);
         UPass = (EditText) findViewById(R.id.RPassword);
         Rlogin = (Button) findViewById(R.id.Rbtn);
-
+        RBsignup = (Button) findViewById(R.id.RBsingup);
 
         mAuth = FirebaseAuth.getInstance();
+
+
+        RBsignup.setOnClickListener(v -> {
+            Intent i = new Intent(relative_login.this, relative_signup.class);
+            startActivity(i);
+            finish();
+        });
 
 
     }

@@ -69,7 +69,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
         if (loggedIn) {
             //We will start the Profile Activity
             Intent intent = new Intent(com.autobus.SubAdmin.subadmin_login.this,
-                    com.autobus.SubAdmin.subadmin_home.class);
+                    subadmin_home.class);
             startActivity(intent);
         }
     }
@@ -105,7 +105,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
                             //Starting profile activity
                             Toast.makeText(com.autobus.SubAdmin.subadmin_login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(com.autobus.SubAdmin.subadmin_login.this,
-                                    com.autobus.SubAdmin.subadmin_home.class);
+                                    subadmin_home.class);
                             startActivity(intent);
                         } else {
                             //If the server response is not success
@@ -119,6 +119,8 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //You can handle error here if you want
+                        Toast.makeText(subadmin_login.this, "Network Connection Error. Try again Later/n " +
+                                ""+error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override

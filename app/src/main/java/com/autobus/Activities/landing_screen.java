@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.autobus.Admin.admin_login;
 import com.autobus.Driver.driver_login;
+import com.autobus.Passenger.Bus_Details;
 import com.autobus.R;
 import com.autobus.SubAdmin.subadmin_login;
+import com.autobus.TicketChecker.ticket_checker_home;
 import com.autobus.TicketChecker.tk_checker_login;
 import com.autobus.Passenger.passenger_auth;
 import com.autobus.Relative.relative_signup;
@@ -66,7 +68,7 @@ public class landing_screen extends AppCompatActivity {
             case R.id.passenger:
                 //do something here when card one is clicked
 
-                Intent passengeri = new Intent(landing_screen.this, passenger_auth.class);
+                Intent passengeri = new Intent(landing_screen.this, Bus_Details.class);
                 startActivity(passengeri);
 
                 break;
@@ -87,7 +89,7 @@ public class landing_screen extends AppCompatActivity {
             case R.id.tkchecker:
                 //do something here when card two is clicked.
 
-                Intent tki = new Intent(getApplicationContext(), tk_checker_login.class);
+                Intent tki = new Intent(getApplicationContext(), ticket_checker_home.class);
                 startActivity(tki);
                 break;
 

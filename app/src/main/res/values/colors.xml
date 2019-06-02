@@ -7,5 +7,12 @@
     <color name="purple">#8A2BE2</color>
     <color name="green">#00FA9A</color>
     <color name="yellow">#FFD700</color>
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink">#e91e63</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_semi">#2196F3</color>
+    <color name="blue_semi_presses">#57B0F7</color>
 
 </resources>

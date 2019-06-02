@@ -16,14 +16,33 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.autobus.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ticket_checker_home extends AppCompatActivity {
 
     private Button scan_btn;
     private TextView usrname;
+    String TicketCode;
+    private static final String URL_QR = "http://192.168.10.12/AutoBus/read_qr.php";
+    String qrCode;
+    String[] qrcodeJson=new String[15];
+    static int counter=-1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +57,8 @@ public class ticket_checker_home extends AppCompatActivity {
         scan_btn = (Button) findViewById(R.id.scan_btn);
         usrname = (TextView) findViewById(R.id.usrname);
         final Activity activity = this;
+
+
         scan_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +69,8 @@ public class ticket_checker_home extends AppCompatActivity {
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
+                loadQR();
+
             }
         });
 
@@ -59,8 +82,60 @@ public class ticket_checker_home extends AppCompatActivity {
         //Showing the current logged in email to textview
         usrname.setText("User: " + email);
 
+
     }
 
+    private void loadQR() {
+        /*
+         * Creating a String Request
+         * The request type is GET defined by first parameter
+         * The URL is defined in the second parameter
+         * Then we have a Response Listener and a Error Listener
+         * In response listener we will get the JSON response as a String
+         * */
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_QR,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            counter=-1;
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                JSONObject data = array.getJSONObject(i);
+
+
+                                counter++;
+
+                                qrcodeJson[counter] = data.getString("ticket_code").trim();
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(ticket_checker_home.this, "Error"
+                                    + e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ticket_checker_home.this, "Error"
+                                + error.toString(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(this).add(stringRequest);
+    }
 
 
     @Override
@@ -72,7 +147,22 @@ public class ticket_checker_home extends AppCompatActivity {
             }
             //The result in QRCODE
             else {
+                qrCode = result.getContents();
+
+                for (int j = 0; j <=counter; j++) {
+
+                    if (qrCode.matches(qrcodeJson[j])) {
+
+                        Toast.makeText(ticket_checker_home.this, "Matched", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        Toast.makeText(ticket_checker_home.this, "not", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
                 Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -81,7 +171,7 @@ public class ticket_checker_home extends AppCompatActivity {
 
 
     //Logout function
-    private void logout(){
+    private void logout() {
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
@@ -91,7 +181,7 @@ public class ticket_checker_home extends AppCompatActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         //Getting out sharedpreferences
-                        SharedPreferences preferences = getSharedPreferences(Config_tk_checker.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+                        SharedPreferences preferences = getSharedPreferences(Config_tk_checker.SHARED_PREF_NAME, Context.MODE_PRIVATE);
                         //Getting editor
                         SharedPreferences.Editor editor = preferences.edit();
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,6 +14,7 @@
 
 
     <TextView
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/toolbar_relative"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
@@ -21,10 +22,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Welcome to Monitoring Panel.
-         PleaseEnter the Secret Ticket Code to Start Monitoring"
+         Please enter the Secret Ticket Code to Start Monitoring"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/textViewName"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <EditText
+            android:typeface="serif"
+            android:textColorHint="#000000"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:id="@+id/ticket_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Code"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/track"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="40.0dip"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/button_background"
+        android:padding="12dp"
+        android:text="Start Tracking"
+        android:textAllCaps="false"
+        android:textColor="#ff000000"
+        android:textSize="22.0dip" />
 
 
 
-</RelativeLayout>
+</LinearLayout>

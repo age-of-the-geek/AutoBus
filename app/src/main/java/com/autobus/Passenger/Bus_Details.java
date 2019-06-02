@@ -31,7 +31,7 @@ import java.util.List;
 public class Bus_Details extends AppCompatActivity {
 
     Toolbar toolbar;
-    private static final String URL_PRODUCTS = "http://192.168.10.13/AutoBus/show_bus_details.php";
+    private static final String URL_PRODUCTS = "http://192.168.10.12/AutoBus/show_bus_details.php";
 
     //a list to store all the products
     List<bus_data> productList;

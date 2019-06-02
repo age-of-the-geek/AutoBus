@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 import com.autobus.Activities.CountryData;
 import com.autobus.R;
 import com.google.firebase.auth.FirebaseAuth;
+
 
 public class passenger_auth extends AppCompatActivity {
 
@@ -30,6 +32,7 @@ public class passenger_auth extends AppCompatActivity {
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
 
         editText = findViewById(R.id.editTextPhone);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         findViewById(R.id.continuebtn).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,208 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/bg"
-    android:fitsSystemWindows="true">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SubAdmin.subadmin_home">
 
-
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/subadmintoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/toolbar_subadmin"
-            layout="@layout/toolbar_default"></include>
-
+        android:background="@color/colorPrimary">
 
         <TextView
-            android:id="@+id/usrname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SubAdmin Dashboard"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        app:menu_backgroundColor="@android:color/transparent"
+        app:menu_colorNormal="@color/blue_semi"
+        app:menu_fab_label=""
+        app:menu_openDirection="up"
+        app:menu_showShadow="true"
+        app:menu_colorPressed="@color/blue_semi_presses">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:text="UserName"
-            android:textColor="#ffffff"
-            android:textSize="25dp" />
+            android:src="@drawable/ic_person_add"
+            app:fab_label="Add Driver"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/pink"
+            app:fab_colorPressed="@color/pink_pressed"/>
 
-
-        <Button
-            android:onClick="open_popup"
-            android:id="@+id/uploadimage"
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_ticketChecker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload Image"/>
-        <!--  Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+            android:src="@drawable/ic_person_add"
+            app:fab_label="Add Ticket-Checker"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/pink"
+            app:fab_colorPressed="@color/pink_pressed"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_detail"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/bus_company"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bus Company"
-                android:inputType="textCapWords" />
-        </android.support.design.widget.TextInputLayout>
+            android:src="@drawable/add_detail"
+            app:fab_label="Add Bus Details"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/pink"
+            app:fab_colorPressed="@color/pink_pressed"/>
 
 
-        <!-- Email Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/bus_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bus Number" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/total_seats"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Total Seats" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/available_seats"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Available Seats" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/leaving_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bus Leaving Time" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/reaching_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bus Reaching Time" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/driver_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Driver Name" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/tk_checker_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ticket Checker Name" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/break_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bus Break Time" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/rating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bus Rating" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/route"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bus Route" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
-                android:id="@+id/day"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Day" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!-- Signup Button -->
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_save"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"
-            android:text="Save Data" />
+    </com.github.clans.fab.FloatingActionMenu>
 
 
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

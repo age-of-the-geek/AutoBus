@@ -3,6 +3,9 @@ package com.autobus.Passenger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ public class BusDetailsList extends AppCompatActivity {
     TextView bus_number, total_seats, available_seats, bus_route, bus_leaving_time, bus_reaching_time,
             bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company, bus_day;
     ImageView imageView;
+    Button cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,11 @@ public class BusDetailsList extends AppCompatActivity {
         bus_rating = findViewById(R.id.rating);
         bus_day = findViewById(R.id.day);
         imageView = findViewById(R.id.bus_image);
+        cart = findViewById(R.id.cart);
+
+        Toolbar toolbar_default = findViewById(R.id.toolbar_passenger);
+        setSupportActionBar(toolbar_default);
+        getSupportActionBar().setTitle("AutoBus");
 
         // Recieve data
         Intent intent = getIntent();
@@ -48,9 +57,9 @@ public class BusDetailsList extends AppCompatActivity {
         String Sbus_break_time = intent.getExtras().getString("BreakTime");
         String Sbus_rating = intent.getExtras().getString("Rating");
         String Sbus_day = intent.getExtras().getString("Day");
-        String bus_imageView = intent.getExtras().getString("Image");
 
-
+        Bundle bundle=getIntent().getExtras();
+        String bus_imageView = bundle.getString("Image");
 
 
 
@@ -67,6 +76,15 @@ public class BusDetailsList extends AppCompatActivity {
         bus_rating.setText(Sbus_rating);
         bus_day.setText(Sbus_day);
         bus_route.setText(Sbus_route);
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BusDetailsList.this, GenerateQRCode.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 }

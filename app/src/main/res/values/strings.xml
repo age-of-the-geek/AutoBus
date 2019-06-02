@@ -6,4 +6,6 @@
     <string name="press_scan_to_scan_the_ticket_qr_code">Press Scan to Scan the Ticket Qr-Code</string>
     <string name="please_enable_gps_for_tracking">Please Enable GPS for Tracking</string>
     <string name="login_with_google">Login With Google</string>
+    <string name="facebook_app_id">2354880554747542</string>
+    <string name="fb_login_protocol_scheme">fb2354880554747542</string>
 </resources>

@@ -15,48 +15,70 @@
         android:layout_marginTop="0.0dip"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:text="Ticket Checker Account"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@id/usrimg"
             android:layout_width="90.0dip"
             android:layout_height="90.0dip"
             android:layout_marginBottom="18.0dip"
-            android:src="@drawable/boy" />
+            android:src="@drawable/ticket_collector" />
 
         <EditText
             android:id="@+id/UEmail"
-            android:layout_width="270.0dip"
-            android:layout_height="50.0dip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="6.0dip"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="5.0dip"
             android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+            android:drawablePadding="10dp"
             android:gravity="center"
             android:hint="Email"
             android:inputType="textEmailAddress"
+            android:padding="20dp"
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
 
         <EditText
             android:id="@+id/UPassword"
-            android:layout_width="270.0dip"
-            android:layout_height="50.0dip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="6.0dip"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+            android:drawablePadding="10dp"
             android:gravity="center"
             android:hint="Password"
             android:inputType="textPassword"
+            android:padding="20dp"
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
 
         <Button
             android:id="@id/loginbtn"
-            android:layout_width="270.0dip"
-            android:layout_height="50.0dip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="40.0dip"
-            android:background="@drawable/button_style_selector"
-            android:fontFamily="verdana"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
             android:text="Login"
             android:textAllCaps="false"
-
             android:textColor="#ff000000"
             android:textSize="22.0dip" />
     </LinearLayout>

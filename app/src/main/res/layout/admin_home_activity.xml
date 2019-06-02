@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff">
 
     <include
@@ -9,7 +10,7 @@
         layout="@layout/toolbar_default"></include>
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/usrname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,10 +19,11 @@
         android:layout_marginTop="25dp"
         android:text="UserName"
         android:textColor="#000000"
-        android:textSize="25dp" />
+        android:textSize="25dp" />-->
 
 
     <TextView
+        android:layout_centerVertical="true"
         android:id="@+id/qr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,6 +33,31 @@
         android:text="Enter Details"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        app:menu_backgroundColor="@android:color/transparent"
+        app:menu_colorNormal="@color/blue_semi"
+        app:menu_fab_label=""
+        app:menu_openDirection="up"
+        app:menu_showShadow="true"
+        app:menu_colorPressed="@color/blue_semi_presses">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_subadmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person_add"
+            app:fab_label="Add SubAdmin"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/pink"
+            app:fab_colorPressed="@color/pink_pressed"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 
 

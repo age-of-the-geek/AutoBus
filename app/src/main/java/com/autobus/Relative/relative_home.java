@@ -64,7 +64,8 @@ public class relative_home extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
-                            Toast.makeText(relative_home.this, "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(relative_home.this, "Error"
+                                    + task.getException(), Toast.LENGTH_SHORT).show();
                             return;
                         }
 

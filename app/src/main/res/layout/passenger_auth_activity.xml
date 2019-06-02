@@ -1,50 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="@drawable/bg"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/bg">
+
     <TextView
-        android:textSize="21.0sp"
-        android:textStyle="bold"
+        android:textAlignment="center"
         android:id="@id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70.0dip"
-        android:text="Please Enter Your Phone# to Verify"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Please Enter Your Phone to Verify"
+        android:textSize="21.0sp"
+        android:textStyle="bold" />
+
     <LinearLayout
-        android:orientation="horizontal"
         android:id="@+id/linearLayout"
-        android:padding="15.0dip"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100.0dip"
-        android:layout_below="@id/textView">
+        android:layout_below="@id/textView"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:padding="15.0dip">
+
+        <TextView
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:id="@id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Please Choose Your Country"
+            android:textSize="21.0sp"
+            android:textStyle="bold" />
+
         <Spinner
             android:id="@+id/spinnerCountries"
-            android:layout_width="115.0dip"
-            android:layout_height="32.0dip" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:padding="22dp"
+            android:textAlignment="center" />
+
         <EditText
             android:id="@+id/editTextPhone"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your number"
-            android:maxLength="11"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_style"
             android:digits="\ 0123456789"
-            android:layout_weight="2.0"
-            android:textAlignment="center" />
+            android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:hint="Enter your number"
+            android:inputType="number"
+            android:maxLength="11"
+            android:padding="20dp"
+            android:textAlignment="center"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff" />
+        />
+
     </LinearLayout>
+
     <Button
-        android:textSize="22.0sp"
-        android:textColor="#ff000000"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
         android:id="@+id/continuebtn"
-        android:background="@drawable/button_style_selector"
-        android:layout_width="150.0dip"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80.0dip"
-        android:text="Continue"
-        android:layout_below="@id/linearLayout"
+        android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:textAllCaps="false" />
+        android:layout_marginTop="0dp"
+        android:background="@drawable/button_background"
+        android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+        android:textAllCaps="false"
+        android:textColor="#ff000000"
+        android:text="Continue"
+        android:textSize="22.0sp" />
 </RelativeLayout>

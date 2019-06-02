@@ -2,6 +2,8 @@ package com.autobus.Passenger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +25,7 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
 
     private Context mCtx;
     private List<bus_data> productList;
+
 
     public adapter_class(Context mCtx, List<bus_data> productList) {
         this.mCtx = mCtx;
@@ -59,6 +62,8 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
         holder.bus_company.setText(String.valueOf(busDetail.getbus_company()));
         holder.bus_route.setText(String.valueOf(busDetail.getbus_route()));
         holder.bus_day.setText(String.valueOf(busDetail.getDay()));
+
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +98,8 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
     }
 
     class bus_dataViewHolder extends RecyclerView.ViewHolder {
+
+
 
         /*TextView bus_number, total_seats, available_seats, bus_route, bus_leaving_time, bus_reaching_time,
                 bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company;

@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
-        android:textSize="22.0sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -27,24 +27,28 @@
         android:textAlignment="center" />
 
     <EditText
+        android:inputType="number"
+        android:background="@drawable/otp"
         android:id="@+id/editTextCode"
-        android:layout_width="240.0dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40.0dip"
-        android:hint="Enter code"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
         android:maxLength="6"
         android:digits="\ 0123456789"
         android:layout_below="@id/textView1"
         android:layout_centerHorizontal="true" />
 
+
     <Button
         android:textSize="19.0sp"
         android:textColor="#ff000000"
         android:id="@+id/buttonSignIn"
-        android:background="@drawable/button_style"
+        android:background="@drawable/button_background"
         android:layout_width="150.0dip"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20.0dip"
+        android:layout_marginTop="150dp"
         android:text="Sign In"
         android:layout_below="@id/editTextCode"
         android:layout_centerHorizontal="true"

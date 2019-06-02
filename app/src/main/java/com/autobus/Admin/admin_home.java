@@ -10,15 +10,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.autobus.R;
 import com.autobus.SubAdmin.Config_subadmin;
 import com.autobus.SubAdmin.subadmin_login;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 public class admin_home extends AppCompatActivity {
 
     private TextView usrname;
+    FloatingActionMenu floatingActionMenu;
+    FloatingActionButton add_subadmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +31,26 @@ public class admin_home extends AppCompatActivity {
         setContentView(R.layout.admin_home_activity);
 
         Toolbar toolbar_default = findViewById(R.id.toolbar_admin);
+        floatingActionMenu = findViewById(R.id.fab_menu_admin);
+        add_subadmin = findViewById(R.id.add_subadmin);
         setSupportActionBar(toolbar_default);
         getSupportActionBar().setTitle("Admin Dashboard");
 
-        usrname = (TextView) findViewById(R.id.usrname);
+        //usrname = (TextView) findViewById(R.id.usrname);
 
         //Fetching email from shared preferences
         SharedPreferences sharedPreferences = getSharedPreferences(Config_Admin.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(Config_Admin.EMAIL_SHARED_PREF, "Not Available");
 
         //Showing the current logged in email to textview
-        usrname.setText("User: " + email);
+        //usrname.setText("User: " + email);
+
+        add_subadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(admin_home.this, AddSubAdmin.class);
+            }
+        });
     }
 
 
