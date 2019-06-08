@@ -1,9 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    android:orientation="horizontal"
     tools:context=".Admin.AddSubAdmin">
+    <include
+        android:id="@+id/toolbar_admin2"
+        layout="@layout/toolbar_default"></include>
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="80dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:text="Enter Account Details"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+
+
+
+        <EditText
+            android:id="@+id/subadmin_uname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="6.0dip"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="5.0dip"
+            android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/ic_person"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff" />
+        <EditText
+            android:id="@+id/subadmin_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="6.0dip"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="5.0dip"
+            android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff" />
+        <EditText
+            android:id="@+id/subadmin_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="6.0dip"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="5.0dip"
+            android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/id"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:hint="ID"
+            android:maxLength="13"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff" />
+        <EditText
+            android:id="@+id/subadmin_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="6.0dip"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="5.0dip"
+            android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/phone"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:hint="Phone Number"
+            android:maxLength="11"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff" />
+        <EditText
+            android:id="@+id/subadmin_bus_company"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="6.0dip"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="5.0dip"
+            android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/licenseplate"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:hint="Bus Company"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff" />
+
+        <Button
+            android:id="@+id/save_subadmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40.0dip"
+            android:background="@drawable/button_background"
+            android:padding="12dp"
+            android:text="Add Sub Admin"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22.0dip"
+            android:drawableStart="@drawable/add_user_image_32px"
+            android:drawablePadding="20dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

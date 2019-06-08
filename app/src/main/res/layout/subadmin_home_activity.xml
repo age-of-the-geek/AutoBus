@@ -1,69 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubAdmin.subadmin_home">
+    tools:context=".SubAdmin.subadmin_home"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/subadmintoolbar"
+    <include
+        android:id="@+id/toolbar_subadmin2"
+        layout="@layout/toolbar_default">
+
+    </include>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabMode="fixed">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SubAdmin Dashboard"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.TabLayout>
 
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/fab_menu"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="380dp">
+
+    </android.support.v4.view.ViewPager>
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        app:menu_backgroundColor="@android:color/transparent"
-        app:menu_colorNormal="@color/blue_semi"
-        app:menu_fab_label=""
-        app:menu_openDirection="up"
-        app:menu_showShadow="true"
-        app:menu_colorPressed="@color/blue_semi_presses">
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_driver"
+        android:layout_height="wrap_content">
+        <com.github.clans.fab.FloatingActionMenu
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/fab_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_person_add"
-            app:fab_label="Add Driver"
-            app:fab_size="mini"
-            app:fab_colorNormal="@color/pink"
-            app:fab_colorPressed="@color/pink_pressed"/>
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            app:menu_backgroundColor="@android:color/transparent"
+            app:menu_colorNormal="@color/blue_semi"
+            app:menu_colorPressed="@color/blue_semi_presses"
+            app:menu_fab_label=""
+            app:menu_openDirection="up"
+            app:menu_showShadow="true">
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_ticketChecker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_person_add"
-            app:fab_label="Add Ticket-Checker"
-            app:fab_size="mini"
-            app:fab_colorNormal="@color/pink"
-            app:fab_colorPressed="@color/pink_pressed"/>
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/add_detail"
-            app:fab_label="Add Bus Details"
-            app:fab_size="mini"
-            app:fab_colorNormal="@color/pink"
-            app:fab_colorPressed="@color/pink_pressed"/>
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/add_driver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_add"
+                app:fab_colorNormal="@color/pink"
+                app:fab_colorPressed="@color/pink_pressed"
+                app:fab_label="Add Driver"
+                app:fab_size="mini" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/add_ticketChecker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_add"
+                app:fab_colorNormal="@color/pink"
+                app:fab_colorPressed="@color/pink_pressed"
+                app:fab_label="Add Ticket-Checker"
+                app:fab_size="mini" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/add_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_detail"
+                app:fab_colorNormal="@color/pink"
+                app:fab_colorPressed="@color/pink_pressed"
+                app:fab_label="Add Bus Details"
+                app:fab_size="mini" />
 
 
-    </com.github.clans.fab.FloatingActionMenu>
+        </com.github.clans.fab.FloatingActionMenu>
+    </RelativeLayout>
 
 
-</RelativeLayout>
+
+
+
+</LinearLayout>

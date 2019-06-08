@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SubAdmin.subadmin_add_driver"></activity>
+        <activity android:name=".SubAdmin.subadmin_add_ticket_checker"></activity>
+        <activity android:name=".SubAdmin.subadmin_add_driver" />
         <activity android:name=".Admin.AddSubAdmin" />
         <activity android:name=".SubAdmin.subadmin_home" />
         <activity android:name=".Driver.SendNotificationActivity" />

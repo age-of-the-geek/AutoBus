@@ -1,4 +1,4 @@
-package com.autobus.Admin;
+package com.autobus.SubAdmin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.autobus.R;
-import com.autobus.SubAdmin.subadmin_add_ticket_checker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,48 +24,47 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddSubAdmin extends AppCompatActivity {
+public class subadmin_add_ticket_checker extends AppCompatActivity {
 
-    private static String URL_SEND = "http://192.168.10.17/AutoBus/add_subadmin.php";
-    EditText subadmin_uname, subadmin_password, subadmin_id, subadmin_phone, bus_company;
-    Button add_subadmin;
+    private static String URL_SEND = "http://192.168.10.5/AutoBus/add_ticket_checker.php";
+    EditText ticket_checker_uname, ticket_checker_password, ticket_checker_id, ticket_checker_phone, bus_number;
+    Button add_ticket_checker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_sub_admin_activity);
+        setContentView(R.layout.subadmin_add_ticket_checker_activity);
 
-        Toolbar toolbar_default = findViewById(R.id.toolbar_admin2);
+        Toolbar toolbar_default = findViewById(R.id.toolbar_subadmin3);
         setSupportActionBar(toolbar_default);
-        getSupportActionBar().setTitle("Add Sub Admin");
+        getSupportActionBar().setTitle("Add Ticket Checker");
         if (getSupportActionBar() != null) {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        ticket_checker_uname = findViewById(R.id.ticket_checker_uname);
+        ticket_checker_password = findViewById(R.id.ticket_checker_password);
+        ticket_checker_id = findViewById(R.id.ticket_checker_id);
+        ticket_checker_phone = findViewById(R.id.ticket_checker_phone);
+        bus_number = findViewById(R.id.ticket_checker_bus_no);
+        add_ticket_checker = findViewById(R.id.save_ticket_checker);
 
-        subadmin_uname = findViewById(R.id.subadmin_uname);
-        subadmin_password = findViewById(R.id.subadmin_password);
-        subadmin_id = findViewById(R.id.subadmin_id);
-        subadmin_phone = findViewById(R.id.subadmin_phone);
-        bus_company = findViewById(R.id.subadmin_bus_company);
-        add_subadmin = findViewById(R.id.save_subadmin);
-
-        add_subadmin.setOnClickListener(new View.OnClickListener() {
+        add_ticket_checker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_new_subadmin();
+                add_new_ticket_checker();
             }
         });
     }
 
-    private void add_new_subadmin() {
+    private void add_new_ticket_checker() {
 
-        final String subadmin_unameS = this.subadmin_uname.getText().toString().trim();
-        final String subadmin_passwordS = this.subadmin_password.getText().toString().trim();
-        final String subadmin_idS = this.subadmin_id.getText().toString().trim();
-        final String subadmin_phoneS = this.subadmin_phone.getText().toString().trim();
-        final String bus_companyS = this.bus_company.getText().toString().trim();
+        final String ticket_checker_unameS = this.ticket_checker_uname.getText().toString().trim();
+        final String ticket_checker_passwordS = this.ticket_checker_password.getText().toString().trim();
+        final String ticket_checker_idS = this.ticket_checker_id.getText().toString().trim();
+        final String ticket_checker_phoneS = this.ticket_checker_phone.getText().toString().trim();
+        final String bus_numberS = this.bus_number.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEND,
                 new Response.Listener<String>() {
@@ -78,11 +76,11 @@ public class AddSubAdmin extends AppCompatActivity {
 
                             if (success.equals("1")) {
 
-                                Toast.makeText(AddSubAdmin.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(subadmin_add_ticket_checker.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(AddSubAdmin.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(subadmin_add_ticket_checker.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -90,30 +88,31 @@ public class AddSubAdmin extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(AddSubAdmin.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(subadmin_add_ticket_checker.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("subadmin_uname", subadmin_unameS);
-                params.put("subadmin_password", subadmin_passwordS);
-                params.put("subadmin_id", subadmin_idS);
-                params.put("subadmin_phone", subadmin_phoneS);
-                params.put("bus_company", bus_companyS);
+                params.put("tk_checker_uname", ticket_checker_unameS);
+                params.put("tk_checker_password", ticket_checker_passwordS);
+                params.put("tk_checker_id", ticket_checker_idS);
+                params.put("tk_checker_phone", ticket_checker_phoneS);
+                params.put("bus_number", bus_numberS);
                 return params;
             }
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-    }
 
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home)
+        if (item.getItemId()== android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
     }

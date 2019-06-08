@@ -49,6 +49,7 @@ public class admin_home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(admin_home.this, AddSubAdmin.class);
+                startActivity(i);
             }
         });
     }

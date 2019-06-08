@@ -5,9 +5,9 @@
     android:layout_height="fill_parent"
     android:background="@drawable/bg"
     android:orientation="horizontal"
-    tools:context=".SubAdmin.subadmin_add_driver">
+    tools:context=".SubAdmin.subadmin_add_ticket_checker">
     <include
-        android:id="@+id/toolbar_subadmin2"
+        android:id="@+id/toolbar_subadmin3"
         layout="@layout/toolbar_default"></include>
 
 
@@ -35,7 +35,7 @@
 
 
         <EditText
-            android:id="@+id/driver_uname"
+            android:id="@+id/ticket_checker_uname"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
@@ -52,7 +52,7 @@
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
         <EditText
-            android:id="@+id/driver_password"
+            android:id="@+id/ticket_checker_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
@@ -69,7 +69,7 @@
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
         <EditText
-            android:id="@+id/driver_id"
+            android:id="@+id/ticket_checker_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
@@ -87,7 +87,7 @@
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
         <EditText
-            android:id="@+id/driver_phone"
+            android:id="@+id/ticket_checker_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
@@ -99,13 +99,13 @@
             android:drawablePadding="10dp"
             android:gravity="center"
             android:hint="Phone Number"
-            android:maxLength="11"
             android:inputType="phone"
+            android:maxLength="11"
             android:padding="10dp"
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
         <EditText
-            android:id="@+id/driver_bus_no"
+            android:id="@+id/ticket_checker_bus_no"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
@@ -123,13 +123,13 @@
             android:textColorHint="#ffffffff" />
 
         <Button
-            android:id="@+id/save_driver"
+            android:id="@+id/save_ticket_checker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40.0dip"
             android:background="@drawable/button_background"
             android:padding="12dp"
-            android:text="Add Driver"
+            android:text="Add Ticket Checker"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="22.0dip"
