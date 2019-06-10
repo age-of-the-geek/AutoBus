@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubAdmin.subadmin_home"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".SubAdmin.subadmin_home">
 
     <include
         android:id="@+id/toolbar_subadmin2"
@@ -13,32 +13,35 @@
 
     </include>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_days"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorAccent"
-        app:tabMode="fixed">
-
-    </android.support.design.widget.TabLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="380dp">
-
-    </android.support.v4.view.ViewPager>
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabMode="fixed">
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tab_days">
+
+        </android.support.v4.view.ViewPager>
+
         <com.github.clans.fab.FloatingActionMenu
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:id="@+id/fab_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:layout_margin="20dp"
             app:menu_backgroundColor="@android:color/transparent"
@@ -80,10 +83,7 @@
 
 
         </com.github.clans.fab.FloatingActionMenu>
+
+
     </RelativeLayout>
-
-
-
-
-
 </LinearLayout>

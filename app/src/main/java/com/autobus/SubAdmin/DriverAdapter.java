@@ -22,6 +22,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
     Context ctx;
     List<DriverModel> mData;
     Dialog mDialog;
+    DriverAdapter recyclerViewAdapter;
 
     public DriverAdapter(Context ctx, List<DriverModel> mData) {
         this.ctx = ctx;
@@ -71,6 +72,8 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
         myViewHolder.tv_name.setText(mData.get(i).getDriverName());
         myViewHolder.tv_phone.setText(mData.get(i).getDriverPhone());
 
+
+
     }
 
     @Override
@@ -87,7 +90,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
             super(itemView);
 
             item_list = itemView.findViewById(R.id.detail_list_layout);
-            tv_name = itemView.findViewById(R.id.name);
+            tv_name = itemView.findViewById(R.id.drivername);
             tv_phone = itemView.findViewById(R.id.number);
 
         }
