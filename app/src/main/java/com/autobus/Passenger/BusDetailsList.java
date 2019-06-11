@@ -80,7 +80,7 @@ public class BusDetailsList extends AppCompatActivity {
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(BusDetailsList.this, GenerateQRCode.class);
+                Intent i = new Intent(BusDetailsList.this, BuyTicket.class);
                 startActivity(i);
                 finish();
             }
