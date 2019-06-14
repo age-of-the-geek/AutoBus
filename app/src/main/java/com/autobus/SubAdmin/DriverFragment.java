@@ -37,7 +37,7 @@ public class DriverFragment extends Fragment implements SwipeRefreshLayout.OnRef
     DriverAdapter recyclerViewAdapter;
     Context ctx;
     SwipeRefreshLayout refreshLayout;
-    private static final String URL_PRODUCTS = "http://192.168.10.11/AutoBus/show_driver.php";
+    private static final String URL_PRODUCTS = "http://192.168.43.197/AutoBus/show_driver.php";
     List<DriverModel> mData;
 
     public DriverFragment() {

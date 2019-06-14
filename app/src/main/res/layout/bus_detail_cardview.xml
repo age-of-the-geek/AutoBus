@@ -15,7 +15,7 @@
     cardview:cardCornerRadius="6dp"
     android:layout_gravity="center_horizontal"
     android:background="#e6e6e6"
-    >
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -53,15 +53,33 @@
             android:layout_margin="2.0dip"
             android:background="#000000" />
 
-        <TextView
-            android:id="@+id/bus_route_card"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="5.0dip"
-            android:text="Route"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/bus_route_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5.0dip"
+                android:text="From"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/bus_route_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5.0dip"
+                android:text="To"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
 
         <View
             android:layout_width="fill_parent"

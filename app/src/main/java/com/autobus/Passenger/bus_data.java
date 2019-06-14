@@ -9,7 +9,8 @@ public class bus_data {
     private String bus_number;
     private String bus_total_seats;
     private String bus_available_seats;
-    private String bus_route;
+    private String bus_from;
+    private String bus_to;
     private String bus_leaving_time;
     private String bus_reaching_time;
     private String bus_driver_name;
@@ -21,7 +22,7 @@ public class bus_data {
 
 
     public bus_data(String bus_number, String bus_total_seats, String bus_available_seats,
-                    String bus_route, String bus_leaving_time, String bus_reaching_time,
+                    String bus_from, String bus_to, String bus_leaving_time, String bus_reaching_time,
                     String bus_driver_name, String bus_ticketchecker_name, String bus_rating, String
                             bus_break_time, String bus_company, String bus_image, String day) {
 
@@ -30,7 +31,8 @@ public class bus_data {
         this.bus_number = bus_number;
         this.bus_total_seats = bus_total_seats;
         this.bus_available_seats = bus_available_seats;
-        this.bus_route = bus_route;
+        this.bus_from = bus_from;
+        this.bus_to = bus_to;
         this.bus_leaving_time = bus_leaving_time;
         this.bus_reaching_time = bus_reaching_time;
         this.bus_driver_name = bus_driver_name;
@@ -58,9 +60,15 @@ public class bus_data {
     public String getbus_available_seats() {
         return bus_available_seats;
     }
-    public String getbus_route() {
-        return bus_route;
+
+    public String getBus_from() {
+        return bus_from;
     }
+
+    public String getBus_to() {
+        return bus_to;
+    }
+
     public String getbus_leaving_time() {
         return bus_leaving_time;
     }

@@ -60,7 +60,8 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
         holder.bus_rating.setText(String.valueOf(busDetail.getbus_rating()));
         holder.bus_break_time.setText(String.valueOf(busDetail.getbus_break_time()));*/
         holder.bus_company.setText(String.valueOf(busDetail.getbus_company()));
-        holder.bus_route.setText(String.valueOf(busDetail.getbus_route()));
+        holder.bus_route_from.setText(String.valueOf(busDetail.getBus_from()));
+        holder.bus_route_to.setText(String.valueOf(busDetail.getBus_to()));
         holder.bus_day.setText(String.valueOf(busDetail.getDay()));
 
 
@@ -71,7 +72,8 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
                 Intent intent = new Intent(mCtx,BusDetailsList.class);
                 // passing data to the book activity
                 intent.putExtra("Image",productList.get(position).getImage());
-                intent.putExtra("Route",productList.get(position).getbus_route());
+                intent.putExtra("RouteFrom",productList.get(position).getBus_from());
+                intent.putExtra("RouteTo",productList.get(position).getBus_to());
                 intent.putExtra("Company",productList.get(position).getbus_company());
                 intent.putExtra("TotalSeats",productList.get(position).getbus_total_seats());
                 intent.putExtra("AvailableSeats",productList.get(position).getbus_available_seats());
@@ -104,7 +106,7 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
         /*TextView bus_number, total_seats, available_seats, bus_route, bus_leaving_time, bus_reaching_time,
                 bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company;
         ImageView imageView;*/
-        TextView bus_company, bus_route, bus_day;
+        TextView bus_company, bus_route_from, bus_route_to,  bus_day;
         ImageView bus_img;
         CardView cardView ;
 
@@ -115,7 +117,8 @@ public class adapter_class extends RecyclerView.Adapter<adapter_class.bus_dataVi
            /* bus_number = itemView.findViewById(R.id.bus_number);
             total_seats = itemView.findViewById(R.id.total_seats);
             available_seats = itemView.findViewById(R.id.available_seats);*/
-            bus_route = itemView.findViewById(R.id.bus_route_card);
+            bus_route_from = itemView.findViewById(R.id.bus_route_from);
+            bus_route_to = itemView.findViewById(R.id.bus_route_to);
             /*bus_leaving_time = itemView.findViewById(R.id.leaving_time);
             bus_reaching_time = itemView.findViewById(R.id.reaching_time);
             bus_driver_name = itemView.findViewById(R.id.driver_name);

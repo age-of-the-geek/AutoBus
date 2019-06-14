@@ -37,7 +37,7 @@ public class subadmin_home extends AppCompatActivity {
         adapter.AddFragment(new DriverFragment(), "Driver");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.manager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.driver);
 
         floatingActionMenu = findViewById(R.id.fab_menu);
         add_driver = findViewById(R.id.add_driver);

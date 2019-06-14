@@ -31,7 +31,7 @@ import java.util.List;
 public class Bus_Details extends AppCompatActivity {
 
     Toolbar toolbar;
-    private static final String URL_PRODUCTS = "http://192.168.10.2/AutoBus/show_bus_details.php";
+    private static final String URL_PRODUCTS = "http://192.168.43.197/AutoBus/show_bus_details.php";
 
     //a list to store all the products
     List<bus_data> productList;
@@ -91,7 +91,8 @@ public class Bus_Details extends AppCompatActivity {
                                         data.getString("bus_number"),
                                         data.getString("bus_total_seats"),
                                         data.getString("bus_available_seats"),
-                                        data.getString("bus_route"),
+                                        data.getString("bus_from"),
+                                        data.getString("bus_to"),
                                         data.getString("bus_leaving_time"),
                                         data.getString("bus_reaching_time"),
                                         data.getString("bus_driver_name"),

@@ -3,6 +3,13 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.autobus">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <dist:module dist:instant="true" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,6 +20,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <uses-feature android:name="com.android.hardware.Camera.focus" />
 
@@ -27,7 +36,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SubAdmin.subadmin_add_ticket_checker"></activity>
+
+
+        <activity android:name=".SubAdmin.subadmin_add_ticket_checker" />
         <activity android:name=".SubAdmin.subadmin_add_driver" />
         <activity android:name=".Admin.AddSubAdmin" />
         <activity android:name=".SubAdmin.subadmin_home" />
@@ -49,7 +60,6 @@
         <activity android:name=".SubAdmin.subadmin_add_bus" />
         <activity android:name=".Admin.admin_home" />
         <activity android:name=".Admin.admin_login" />
-        <activity android:name=".SubAdmin.UploadImage" />
         <activity android:name=".Relative.relative_home" />
         <activity
             android:name=".Activities.welcome_screen"

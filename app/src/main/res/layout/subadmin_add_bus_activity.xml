@@ -1,43 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical"
     android:paddingBottom="10dp">
 
     <include
         android:id="@+id/toolbar_subadmin"
         layout="@layout/toolbar_default"></include>
 
-   <!-- <TextView
-        android:id="@+id/usrname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="UserName"
-        android:textColor="#000000"
-        android:textSize="25dp" />-->
-    <!-- vertical ScrollView to make all the items or views scrollable -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_subadmin"
         android:layout_marginTop="0dp"
         android:scrollbars="none">
         <!-- LinearLayout Inside ScrollView -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginRight="11dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
-
-            <!-- create a Linear Layout with horizontal orientation and weightSum property -->
 
             <LinearLayout
                 android:id="@+id/firstLayout"
@@ -50,7 +37,6 @@
                 <!-- place one TextView and one EditText inside layout using weight property -->
 
                 <EditText
-
                     android:id="@+id/bus_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,13 +59,13 @@
                 <!-- place one TextView and one EditText inside layout using weight property -->
 
                 <EditText
+                    android:inputType="textCapWords"
                     android:id="@+id/bus_number"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
-                    android:background="@drawable/edit_text_style"
+                    android:layout_height="wrap_content"
                     android:hint="Bus Number"
                     android:textColorHint="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
             <!-- create a Linear Layout with horizontal orientation and weightSum property -->
 
@@ -95,6 +81,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/total_seats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -116,6 +103,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/available_seats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,6 +115,7 @@
             <!-- create a Linear Layout with horizontal orientation and weightSum property -->
 
             <LinearLayout
+
                 android:id="@+id/fifthLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,18 +125,35 @@
 
                 <!-- place one TextView and one EditText inside layout using weight property -->
 
+                <EditText
+                    android:id="@+id/leaving_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down_black"
+                    android:focusable="false"
+                    android:hint="Bus Leaving Date"
+                    android:onClick="selectDate"
+                    android:textColorHint="#000000"
+                    android:textSize="13sp" />
 
                 <EditText
+                    android:onClick="selectTime"
                     android:id="@+id/leaving_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down_black"
+                    android:focusable="false"
                     android:hint="Bus Leaving Time"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
+
             </LinearLayout>
             <!-- create a Linear Layout with horizontal orientation and weightSum property -->
 
             <LinearLayout
+
                 android:id="@+id/sixthLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,9 +165,25 @@
 
 
                 <EditText
+                    android:id="@+id/reaching_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down_black"
+                    android:focusable="false"
+                    android:hint="Bus Reaching Date"
+                    android:onClick="selectDate"
+                    android:textColorHint="#000000"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:onClick="selectTime"
                     android:id="@+id/reaching_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down_black"
+                    android:focusable="false"
                     android:hint="Bus Reaching Time"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
@@ -181,6 +203,7 @@
 
 
                 <EditText
+                    android:inputType="textPersonName"
                     android:id="@+id/driver_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -202,6 +225,7 @@
 
 
                 <EditText
+                    android:inputType="textPersonName"
                     android:id="@+id/tk_checker_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -221,14 +245,30 @@
 
                 <!-- place one TextView and one EditText inside layout using weight property -->
 
+                <EditText
+                    android:id="@+id/break_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down_black"
+                    android:focusable="false"
+                    android:hint="Bus Break Date"
+                    android:onClick="selectDate"
+                    android:textColorHint="#000000"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/break_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down_black"
+                    android:focusable="false"
                     android:hint="Bus Break Time"
+                    android:onClick="selectTime"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -243,6 +283,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -264,10 +305,22 @@
 
 
                 <EditText
-                    android:id="@+id/route"
+                    android:inputType="textCapWords"
+                    android:id="@+id/route_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Bus Route"
+                    android:layout_weight="1"
+                    android:hint="Bus Route From"
+                    android:textColorHint="#000000"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:inputType="textCapWords"
+                    android:id="@+id/route_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Bus Route To"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -284,6 +337,7 @@
 
 
                 <EditText
+                    android:inputType="textCapWords"
                     android:id="@+id/day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -293,7 +347,36 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatButton
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <ImageView
+                    android:scaleType="fitCenter"
+                    android:id="@+id/bus_image"
+                    android:layout_width="0dp"
+                    android:layout_height="66dp"
+                    android:layout_weight="1.6"
+                    android:src="@drawable/driver" />
+
+                <ImageButton
+                    android:foreground="?android:selectableItemBackground"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:id="@+id/upload_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:background="#ffffff"
+                    android:scaleType="center"
+                    android:src="@drawable/upload_img" />
+
+            </LinearLayout>
+
+            <Button
+                android:textColor="#ffffff"
                 android:id="@+id/btn_save"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -305,4 +388,4 @@
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

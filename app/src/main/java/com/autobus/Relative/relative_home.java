@@ -3,11 +3,13 @@ package com.autobus.Relative;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.autobus.Driver.UserAdapter;
 import com.autobus.Driver.driver_home;
 import com.autobus.R;
 import com.bumptech.glide.Glide;
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +41,11 @@ public class relative_home extends AppCompatActivity {
 
     TextView textName;
     FirebaseAuth mAuth;
-
+    Button track;
+    public static final int LOGIN_PERMISSION = 1000;
     public static final String NODE_USERS = "users";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,8 @@ public class relative_home extends AppCompatActivity {
 
 
         textName = findViewById(R.id.textViewName);
+        track = findViewById(R.id.track);
+
 
 
         Toolbar toolbar_default = findViewById(R.id.toolbar_relative);
@@ -77,6 +85,7 @@ public class relative_home extends AppCompatActivity {
                     }
                 });
     }
+
 
 
     private void saveToken(String token) {

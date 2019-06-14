@@ -1,7 +1,6 @@
 package com.autobus.Passenger;
 
 
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,17 +9,18 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.autobus.Activities.CountryData;
 import com.autobus.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.hbb20.CountryCodePicker;
 
 
 public class passenger_auth extends AppCompatActivity {
 
-    private Spinner spinner;
     private EditText editText;
-
+    private CountryCodePicker codePicker;
 
 
     @Override
@@ -28,17 +28,13 @@ public class passenger_auth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.passenger_auth_activity);
 
-        spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
-
         editText = findViewById(R.id.editTextPhone);
+        codePicker = findViewById(R.id.ccp);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         findViewById(R.id.continuebtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-
                 String number = editText.getText().toString().trim();
 
                 if (number.isEmpty() || number.length() < 10) {
@@ -47,8 +43,8 @@ public class passenger_auth extends AppCompatActivity {
                     return;
                 }
 
-                String phoneNumber = "+" + code + number;
-
+                String phoneNumber = '+' + codePicker.getSelectedCountryCode() + number;
+                Toast.makeText(passenger_auth.this, phoneNumber, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(passenger_auth.this, verify_phone.class);
                 intent.putExtra("phonenumber", phoneNumber);
                 startActivity(intent);
@@ -67,8 +63,6 @@ public class passenger_auth extends AppCompatActivity {
 
             startActivity(intent);
         }
-
-
 
 
     }

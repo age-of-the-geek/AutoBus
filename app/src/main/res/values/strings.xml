@@ -8,4 +8,5 @@
     <string name="login_with_google">Login With Google</string>
     <string name="facebook_app_id">2354880554747542</string>
     <string name="fb_login_protocol_scheme">fb2354880554747542</string>
+    <string name="title_activity_relative_tracking_map">Map</string>
 </resources>

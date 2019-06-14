@@ -3,6 +3,8 @@ package com.autobus.Driver;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -23,12 +25,14 @@ public class NotificationHelper {
                 intent,
                 PendingIntent.FLAG_CANCEL_CURRENT
         );
+        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, CHANNEL_ID)
                         .setSmallIcon(R.drawable.logo)
                         .setContentTitle(title)
                         .setContentText(body)
+                        .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true)
                         .setPriority(NotificationCompat.PRIORITY_HIGH);
