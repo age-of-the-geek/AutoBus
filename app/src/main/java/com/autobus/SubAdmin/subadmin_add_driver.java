@@ -1,7 +1,7 @@
 package com.autobus.SubAdmin;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +39,7 @@ public class subadmin_add_driver extends AppCompatActivity {
         Toolbar toolbar_default = findViewById(R.id.toolbar_subadmin2);
         setSupportActionBar(toolbar_default);
         getSupportActionBar().setTitle("Add Driver");
-        if (getSupportActionBar()!= null){
+        if (getSupportActionBar() != null) {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -61,60 +61,68 @@ public class subadmin_add_driver extends AppCompatActivity {
 
     private void add_new_driver() {
 
-        final String driver_unameS = this.driver_uname.getText().toString().trim();
-        final String driver_passwordS = this.driver_password.getText().toString().trim();
-        final String driver_idS = this.driver_id.getText().toString().trim();
-        final String driver_phoneS = this.driver_phone.getText().toString().trim();
-        final String bus_numberS = this.bus_number.getText().toString().trim();
+        if (driver_uname.getText().toString().isEmpty() || driver_password.getText().toString().isEmpty() ||
+                driver_id.getText().toString().isEmpty() || driver_phone.getText().toString().isEmpty() ||
+                bus_number.getText().toString().isEmpty()) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEND,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
+            Toast.makeText(this, "Enter All The Data First!", Toast.LENGTH_SHORT).show();
+            driver_uname.requestFocus();
+            driver_uname.setError("Enter Data");
+        } else {
+            final String driver_unameS = this.driver_uname.getText().toString().trim();
+            final String driver_passwordS = this.driver_password.getText().toString().trim();
+            final String driver_idS = this.driver_id.getText().toString().trim();
+            final String driver_phoneS = this.driver_phone.getText().toString().trim();
+            final String bus_numberS = this.bus_number.getText().toString().trim();
 
-                            if (success.equals("1")) {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEND,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String success = jsonObject.getString("success");
 
-                                Toast.makeText(subadmin_add_driver.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
+                                if (success.equals("1")) {
+
+                                    Toast.makeText(subadmin_add_driver.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(subadmin_add_driver.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
+
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(subadmin_add_driver.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
-
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(subadmin_add_driver.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(subadmin_add_driver.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
 
-                Map<String, String> params = new HashMap<>();
-                params.put("driver_uname", driver_unameS);
-                params.put("driver_password", driver_passwordS);
-                params.put("driver_id", driver_idS);
-                params.put("driver_phone", driver_phoneS);
-                params.put("bus_number", bus_numberS);
-                return params;
-            }
-        };
+                    Map<String, String> params = new HashMap<>();
+                    params.put("driver_uname", driver_unameS);
+                    params.put("driver_password", driver_passwordS);
+                    params.put("driver_id", driver_idS);
+                    params.put("driver_phone", driver_phoneS);
+                    params.put("bus_number", bus_numberS);
+                    return params;
+                }
+            };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
 
-
+        }
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()== android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
     }

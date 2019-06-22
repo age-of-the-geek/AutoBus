@@ -2,6 +2,7 @@ package com.autobus.SubAdmin;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.autobus.R;
 
@@ -23,6 +25,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
     List<DriverModel> mData;
     Dialog mDialog;
     DriverAdapter recyclerViewAdapter;
+    String DriverName, DriverPassword, credentials;
 
     public DriverAdapter(Context ctx, List<DriverModel> mData) {
         this.ctx = ctx;
@@ -43,7 +46,20 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
         mDialog.setContentView(R.layout.driver_detail_dialog);
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-
+        vHolder.item_list.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DriverName= mData.get(vHolder.getAdapterPosition()).getDriverName();
+                DriverPassword= mData.get(vHolder.getAdapterPosition()).getDriverPassword();
+                credentials = "Name:"+DriverName+ "\n" + "Password:" + DriverPassword;
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share User Name & Password");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, credentials);
+                ctx.startActivity(Intent.createChooser(sharingIntent, ctx.getResources().getString(R.string.share_using)));
+                return true;
+            }
+        });
         vHolder.item_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +100,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
     public static class myViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_name, tv_phone;
-        private LinearLayout item_list;
+        public LinearLayout item_list;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);

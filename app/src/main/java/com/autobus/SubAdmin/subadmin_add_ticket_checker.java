@@ -1,7 +1,7 @@
 package com.autobus.SubAdmin;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,59 +60,69 @@ public class subadmin_add_ticket_checker extends AppCompatActivity {
 
     private void add_new_ticket_checker() {
 
-        final String ticket_checker_unameS = this.ticket_checker_uname.getText().toString().trim();
-        final String ticket_checker_passwordS = this.ticket_checker_password.getText().toString().trim();
-        final String ticket_checker_idS = this.ticket_checker_id.getText().toString().trim();
-        final String ticket_checker_phoneS = this.ticket_checker_phone.getText().toString().trim();
-        final String bus_numberS = this.bus_number.getText().toString().trim();
+        if (ticket_checker_uname.getText().toString().isEmpty() || ticket_checker_password.getText().toString().isEmpty() ||
+                ticket_checker_id.getText().toString().isEmpty() || ticket_checker_phone.getText().toString().isEmpty() ||
+                bus_number.getText().toString().isEmpty()) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEND,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
+            Toast.makeText(this, "Enter All The Data First!", Toast.LENGTH_SHORT).show();
+            ticket_checker_uname.requestFocus();
+            ticket_checker_uname.setError("Enter Data");
 
-                            if (success.equals("1")) {
+        } else {
 
-                                Toast.makeText(subadmin_add_ticket_checker.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
+            final String ticket_checker_unameS = this.ticket_checker_uname.getText().toString().trim();
+            final String ticket_checker_passwordS = this.ticket_checker_password.getText().toString().trim();
+            final String ticket_checker_idS = this.ticket_checker_id.getText().toString().trim();
+            final String ticket_checker_phoneS = this.ticket_checker_phone.getText().toString().trim();
+            final String bus_numberS = this.bus_number.getText().toString().trim();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEND,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String success = jsonObject.getString("success");
+
+                                if (success.equals("1")) {
+
+                                    Toast.makeText(subadmin_add_ticket_checker.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(subadmin_add_ticket_checker.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
+
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(subadmin_add_ticket_checker.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
-
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(subadmin_add_ticket_checker.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(subadmin_add_ticket_checker.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
 
-                Map<String, String> params = new HashMap<>();
-                params.put("tk_checker_uname", ticket_checker_unameS);
-                params.put("tk_checker_password", ticket_checker_passwordS);
-                params.put("tk_checker_id", ticket_checker_idS);
-                params.put("tk_checker_phone", ticket_checker_phoneS);
-                params.put("bus_number", bus_numberS);
-                return params;
-            }
-        };
+                    Map<String, String> params = new HashMap<>();
+                    params.put("tk_checker_uname", ticket_checker_unameS);
+                    params.put("tk_checker_password", ticket_checker_passwordS);
+                    params.put("tk_checker_id", ticket_checker_idS);
+                    params.put("tk_checker_phone", ticket_checker_phoneS);
+                    params.put("bus_number", bus_numberS);
+                    return params;
+                }
+            };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
+        }
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()== android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
     }

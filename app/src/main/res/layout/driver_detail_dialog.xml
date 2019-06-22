@@ -9,7 +9,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#008B7E"
+        android:background="@drawable/pop_up"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 

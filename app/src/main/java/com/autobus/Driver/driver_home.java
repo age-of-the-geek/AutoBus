@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class driver_home extends AppCompatActivity {
     private static final String CHANNEL_DESC = "AutoBus Notifications";
     private List<User> userList;
     FirebaseAuth mAuth;
+    Button send_noti_btn;
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -65,6 +67,7 @@ public class driver_home extends AppCompatActivity {
 
         usrname = findViewById(R.id.usrname);
         progressBar = findViewById(R.id.Nprogressbar);
+        send_noti_btn = findViewById(R.id.send_noti_btn);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -72,6 +75,13 @@ public class driver_home extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Config_Driver.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(Config_Driver.EMAIL_SHARED_PREF, "Not Available");
 
+        send_noti_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(driver_home.this, TrackerActivity.class);
+                startActivity(i);
+            }
+        });
         //Showing the current logged in email to textview
         usrname.setText("User: " + email);
         loadUsers();

@@ -35,9 +35,11 @@ public class subadmin_home extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.AddFragment(new DriverFragment(), "Driver");
+        adapter.AddFragment(new TicketCheckerFragment(), "Ticket Checker");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.driver);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ticket_collector);
 
         floatingActionMenu = findViewById(R.id.fab_menu);
         add_driver = findViewById(R.id.add_driver);

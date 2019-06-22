@@ -28,10 +28,8 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.autobus.R;
 
@@ -53,10 +51,12 @@ public class subadmin_add_bus extends AppCompatActivity {
             bus_leaving_stringY, bus_leaving_stringM, bus_leaving_stringD, bus_leaving_stringH, bus_leaving_stringMi, bus_leaving_string,
             bus_reaching_string, bus_reaching_stringY, bus_reaching_stringM, bus_reaching_stringD, bus_reaching_stringH, bus_reaching_stringMi,
             bus_break_string, bus_break_stringY, bus_break_stringM, bus_break_stringD, bus_break_stringH, bus_break_stringMi;
+
     ImageView bus_image;
     ImageButton upload_image;
     EditText bus_number, total_seats, available_seats, bus_from, bus_to, bus_leaving_time, bus_reaching_time,
-            bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company, day, bus_leaving_date, bus_reaching_date, bus_break_date;
+            bus_driver_name, bus_ticketchecker_name, price, bus_break_time, bus_company, day, bus_leaving_date, bus_reaching_date,
+            bus_break_date;
     private Button savebtn;
 
     @Override
@@ -75,7 +75,6 @@ public class subadmin_add_bus extends AppCompatActivity {
         setCurrentDate();
         setCurrentTime();
 
-
         bus_image = findViewById(R.id.bus_image);
         upload_image = findViewById(R.id.upload_image);
         bus_number = findViewById(R.id.bus_number);
@@ -89,7 +88,7 @@ public class subadmin_add_bus extends AppCompatActivity {
         bus_reaching_time = findViewById(R.id.reaching_time);
         bus_driver_name = findViewById(R.id.driver_name);
         bus_ticketchecker_name = findViewById(R.id.tk_checker_name);
-        bus_rating = findViewById(R.id.rating);
+        price = findViewById(R.id.price);
         bus_break_time = findViewById(R.id.break_time);
         bus_break_date = findViewById(R.id.break_date);
         bus_company = findViewById(R.id.bus_company);
@@ -212,7 +211,7 @@ public class subadmin_add_bus extends AppCompatActivity {
                 timePickerDialog2.show();
                 break;
 
-                default:
+            default:
         }
     }
 
@@ -297,86 +296,117 @@ public class subadmin_add_bus extends AppCompatActivity {
 
     private void saveData(final Bitmap bitmap) {
 
-        bus_leaving_string = bus_leaving_stringD + "-" + bus_leaving_stringM + "-" + bus_leaving_stringY+
-                            " : "+bus_leaving_stringH+":"+bus_leaving_stringMi;
-        bus_reaching_string = bus_reaching_stringD + "-" + bus_reaching_stringM + "-" + bus_reaching_stringY+
-                " : "+bus_reaching_stringH+":"+bus_reaching_stringMi;
-        bus_break_string = bus_break_stringD + "-" + bus_break_stringM + "-" + bus_break_stringY+
-                " : "+bus_break_stringH+":"+bus_break_stringMi;
+        bus_leaving_string = bus_leaving_stringD + "-" + bus_leaving_stringM + "-" + bus_leaving_stringY +
+                " : " + bus_leaving_stringH + ":" + bus_leaving_stringMi;
+        bus_reaching_string = bus_reaching_stringD + "-" + bus_reaching_stringM + "-" + bus_reaching_stringY +
+                " : " + bus_reaching_stringH + ":" + bus_reaching_stringMi;
+        bus_break_string = bus_break_stringD + "-" + bus_break_stringM + "-" + bus_break_stringY +
+                " : " + bus_break_stringH + ":" + bus_break_stringMi;
+
+        if (bus_leaving_string.isEmpty() || bus_reaching_string.isEmpty() || bus_break_string.isEmpty()
+                || bus_company.getText().toString().isEmpty() || bus_number.getText().toString().isEmpty()
+                || total_seats.getText().toString().isEmpty() || available_seats.getText().toString().isEmpty()
+                || bus_from.getText().toString().isEmpty() || bus_to.getText().toString().isEmpty()
+                || bus_driver_name.getText().toString().isEmpty() || price.getText().toString().isEmpty()
+                || bus_ticketchecker_name.getText().toString().isEmpty() || day.getText().toString().isEmpty()) {
 
 
+            Toast.makeText(this, "Please Enter All the Required Data to Proceed", Toast.LENGTH_SHORT).show();
+            bus_company.requestFocus();
+            bus_company.setError("Please Enter Data!");
+        } else {
+            String totalSeats = total_seats.getText().toString();
+            String availableSeats = available_seats.getText().toString();
+            int total = Integer.parseInt(totalSeats);
+            int available = Integer.parseInt(availableSeats);
+            if (available != 0 && total != 0) {
+                if (available > total) {
+                    Toast.makeText(this, "Available Seats Cannot Be Greater than Total Seats", Toast.LENGTH_SHORT).show();
+                    available_seats.requestFocus();
+                    available_seats.setError("Must be Less than Total Seats");
+                } else {
+                    String Price = "Rs:";
+                    String FinalPrice;
+                    final String bus_companyS = this.bus_company.getText().toString().trim();
+                    final String bus_numberS = this.bus_number.getText().toString().trim();
+                    final String total_seatsS = this.total_seats.getText().toString().trim();
+                    final String available_seatsS = this.available_seats.getText().toString().trim();
+                    final String bus_routeFromS = this.bus_from.getText().toString().trim();
+                    final String bus_routeToS = this.bus_to.getText().toString().trim();
+                    final String bus_leaving_timeS = bus_leaving_string;
+                    final String bus_reaching_timeS = bus_reaching_string;
+                    final String bus_driver_nameS = this.bus_driver_name.getText().toString().trim();
+                    final String priceS = this.price.getText().toString().trim();
+                    FinalPrice = Price + priceS;
+                    final String bus_ticketchecker_nameS = this.bus_ticketchecker_name.getText().toString().trim();
+                    final String bus_break_timeS = bus_break_string;
+                    final String dayS = this.day.getText().toString().trim();
 
-        final String bus_companyS = this.bus_company.getText().toString().trim();
-        final String bus_numberS = this.bus_number.getText().toString().trim();
-        final String total_seatsS = this.total_seats.getText().toString().trim();
-        final String available_seatsS = this.available_seats.getText().toString().trim();
-        final String bus_routeFromS = this.bus_from.getText().toString().trim();
-        final String bus_routeToS = this.bus_to.getText().toString().trim();
-        final String bus_leaving_timeS = bus_leaving_string;
-        final String bus_reaching_timeS = bus_reaching_string;
-        final String bus_driver_nameS = this.bus_driver_name.getText().toString().trim();
-        final String bus_ratingS = this.bus_rating.getText().toString().trim();
-        final String bus_ticketchecker_nameS = this.bus_ticketchecker_name.getText().toString().trim();
-        final String bus_break_timeS = bus_break_string;
-        final String dayS = this.day.getText().toString().trim();
 
-        //our custom volley request
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, EndPoints.UPLOAD_URL,
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        try {
-                            JSONObject obj = new JSONObject(new String(response.data));
-                            Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                    //our custom volley request
+                    VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, EndPoints.UPLOAD_URL,
+                            new Response.Listener<NetworkResponse>() {
+                                @Override
+                                public void onResponse(NetworkResponse response) {
+                                    try {
+                                        JSONObject obj = new JSONObject(new String(response.data));
+                                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }) {
+
+                        /*
+                         * If you want to add more parameters with the image
+                         * you can do it here
+                         * */
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("bus_company", bus_companyS);
+                            params.put("bus_break_time", bus_break_timeS);
+                            params.put("ticket_price", FinalPrice);
+                            params.put("bus_ticketchecker_name", bus_ticketchecker_nameS);
+                            params.put("bus_driver_name", bus_driver_nameS);
+                            params.put("bus_reaching_time", bus_reaching_timeS);
+                            params.put("bus_leaving_time", bus_leaving_timeS);
+                            params.put("bus_from", bus_routeFromS);
+                            params.put("bus_to", bus_routeToS);
+                            params.put("bus_available_seats", available_seatsS);
+                            params.put("bus_total_seats", total_seatsS);
+                            params.put("bus_number", bus_numberS);
+                            params.put("day", dayS);
+                            return params;
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }) {
 
-            /*
-             * If you want to add more parameters with the image
-             * you can do it here
-             * */
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("bus_company", bus_companyS);
-                params.put("bus_break_time", bus_break_timeS);
-                params.put("bus_rating", bus_ratingS);
-                params.put("bus_ticketchecker_name", bus_ticketchecker_nameS);
-                params.put("bus_driver_name", bus_driver_nameS);
-                params.put("bus_reaching_time", bus_reaching_timeS);
-                params.put("bus_leaving_time", bus_leaving_timeS);
-                params.put("bus_from", bus_routeFromS);
-                params.put("bus_to", bus_routeToS);
-                params.put("bus_available_seats", available_seatsS);
-                params.put("bus_total_seats", total_seatsS);
-                params.put("bus_number", bus_numberS);
-                params.put("day", dayS);
-                return params;
+                        /*
+                         * Here we are passing image by renaming it with a unique name
+                         * */
+                        @Override
+                        protected Map<String, DataPart> getByteData() {
+                            Map<String, DataPart> params = new HashMap<>();
+                            long imagename = System.currentTimeMillis();
+                            params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                            return params;
+                        }
+                    };
+
+                    //adding the request to volley
+                    Volley.newRequestQueue(this).add(volleyMultipartRequest);
+
+                }
+
             }
 
-            /*
-             * Here we are passing image by renaming it with a unique name
-             * */
-            @Override
-            protected Map<String, DataPart> getByteData() {
-                Map<String, DataPart> params = new HashMap<>();
-                long imagename = System.currentTimeMillis();
-                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
-                return params;
-            }
-        };
+        }
 
-        //adding the request to volley
-        Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
 
 

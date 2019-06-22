@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.autobus.Driver.User;
 import com.autobus.Driver.UserAdapter;
 import com.autobus.Driver.driver_home;
+import com.autobus.PassengerActivity;
 import com.autobus.R;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
@@ -58,7 +59,12 @@ public class relative_home extends AppCompatActivity {
 
         textName = findViewById(R.id.textViewName);
         track = findViewById(R.id.track);
-
+        track.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(relative_home.this, PassengerActivity.class));
+            }
+        });
 
 
         Toolbar toolbar_default = findViewById(R.id.toolbar_relative);

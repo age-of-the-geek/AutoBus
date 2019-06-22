@@ -3,7 +3,6 @@ package com.autobus.Passenger;
 public class bus_data {
 
 
-
     private String day;
     private String image;
     private String bus_number;
@@ -15,16 +14,15 @@ public class bus_data {
     private String bus_reaching_time;
     private String bus_driver_name;
     private String bus_ticketchecker_name;
-    private String bus_rating;
     private String bus_break_time;
     private String bus_company;
-
+    private String ticket_price;
 
 
     public bus_data(String bus_number, String bus_total_seats, String bus_available_seats,
                     String bus_from, String bus_to, String bus_leaving_time, String bus_reaching_time,
-                    String bus_driver_name, String bus_ticketchecker_name, String bus_rating, String
-                            bus_break_time, String bus_company, String bus_image, String day) {
+                    String bus_driver_name, String bus_ticketchecker_name, String
+                            bus_break_time, String bus_company, String bus_image, String day, String ticket_price) {
 
         this.day = day;
         this.image = bus_image;
@@ -37,14 +35,15 @@ public class bus_data {
         this.bus_reaching_time = bus_reaching_time;
         this.bus_driver_name = bus_driver_name;
         this.bus_ticketchecker_name = bus_ticketchecker_name;
-        this.bus_rating = bus_rating;
         this.bus_break_time = bus_break_time;
         this.bus_company = bus_company;
+        this.ticket_price = ticket_price;
     }
 
     public String getDay() {
         return day;
     }
+
     public String getImage() {
         return image;
     }
@@ -72,23 +71,29 @@ public class bus_data {
     public String getbus_leaving_time() {
         return bus_leaving_time;
     }
+
     public String getbus_reaching_time() {
         return bus_reaching_time;
     }
+
     public String getbus_driver_name() {
         return bus_driver_name;
     }
+
     public String getbus_ticketchecker_name() {
         return bus_ticketchecker_name;
     }
-    public String getbus_rating() {
-        return bus_rating;
-    }
+
     public String getbus_break_time() {
         return bus_break_time;
     }
+
     public String getbus_company() {
         return bus_company;
+    }
+
+    public String getTicket_price() {
+        return ticket_price;
     }
 
 }

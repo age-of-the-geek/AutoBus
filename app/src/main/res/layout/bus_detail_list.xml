@@ -2,208 +2,219 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/toolbar_passenger"
         layout="@layout/toolbar_default"></include>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:id="@+id/layout">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="120dp"
-            android:layout_height="90dp"
-            android:padding="4dp"
-            android:src="@drawable/boy"/>
-
-
-        <TextView
-            android:padding="5dp"
-            android:layout_marginLeft="120dp"
-            android:id="@+id/bus_company"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Daewo"
-            android:textSize="20dp"
-            android:textColor="#000000" />
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="100dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:src="@drawable/boy" />
+
+                <TextView
+                    android:id="@+id/bus_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Daewo"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/bus_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:text="GJN-1234"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
 
+            <TextView
+                android:id="@+id/bus_ticket_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:text="GJN-1234"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
 
-        <TextView
-            android:padding="5dp"
-            android:layout_marginLeft="120dp"
-            android:id="@+id/bus_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/bus_company"
-            android:layout_marginTop="5dp"
-            android:text="GJN-1234"
-            android:textSize="20dp"
-            android:textColor="#000000" />
+            <TextView
+                android:id="@+id/total_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bus_number"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="70"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/available_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-        <TextView
-            android:padding="5dp"
-            android:layout_marginLeft="120dp"
-            android:id="@+id/total_seats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/bus_number"
-            android:layout_marginTop="5dp"
-            android:textSize="20dp"
-            android:textColor="#000000"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:text="70"
-            />
+            <TextView
+                android:id="@+id/leaving_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/available_seats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/total_seats"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000" />
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/leaving_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/available_seats"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000" />
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/reaching_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/leaving_time"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000" />
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/driver_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/reaching_time"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000" />
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/tk_checker_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/driver_name"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000" />
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/break_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tk_checker_name"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000" />
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/break_time"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000" />
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/route_from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rating"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/reaching_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/route_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/route_from"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000"/>
-        <TextView
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:id="@+id/day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/route_to"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="50"
-            android:textSize="20dp"
-            android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/driver_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/tk_checker_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
 
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/break_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
 
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-    </RelativeLayout>
-    <Button
-        android:layout_gravity="end"
-        android:drawableEnd="@drawable/cart"
-        android:id="@+id/cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/round_bg"
-        android:padding="12dp"
-        android:textAllCaps="false"
-        android:textColor="#ff000000"
-        android:textSize="22.0dip" />
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/route_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/route_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+
+                android:paddingRight="15dp"
+                android:text="50"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <ImageButton
+
+                android:id="@+id/cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:background="#ffffff"
+                android:clickable="true"
+                android:focusable="true"
+
+                android:src="@drawable/cart" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

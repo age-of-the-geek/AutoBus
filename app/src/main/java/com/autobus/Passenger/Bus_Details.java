@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -47,6 +48,12 @@ public class Bus_Details extends AppCompatActivity {
 
         toolbar = findViewById(R.id.passenger_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("AutoBus");
+        if (getSupportActionBar() != null) {
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
 
         recyclerView = findViewById(R.id.recylcerView);
@@ -97,11 +104,11 @@ public class Bus_Details extends AppCompatActivity {
                                         data.getString("bus_reaching_time"),
                                         data.getString("bus_driver_name"),
                                         data.getString("bus_ticketchecker_name"),
-                                        data.getString("bus_rating"),
                                         data.getString("bus_break_time"),
                                         data.getString("bus_company"),
                                         data.getString("bus_image"),
-                                        data.getString("day")
+                                        data.getString("day"),
+                                        data.getString("ticket_price")
                                 ));
                             }
 
@@ -137,7 +144,12 @@ public class Bus_Details extends AppCompatActivity {
 
         startActivity(intent);
 
-
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 }
 

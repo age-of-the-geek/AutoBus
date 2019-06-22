@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DriverFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class DriverFragment extends Fragment {
     View v;
     private RecyclerView mRecyclerView;
     DriverAdapter recyclerViewAdapter;
@@ -66,13 +66,6 @@ public class DriverFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
 
         mData = new ArrayList<>();
-
-        /*mData.add(new DriverModel("Asad","092 4587455","Asss","ssss","dddddd"));
-        mData.add(new DriverModel("Asad","092 4587455","Asss","ssss","dddddd"));
-        mData.add(new DriverModel("Asad","092 4587455","Asss","ssss","dddddd"));
-        mData.add(new DriverModel("Asad","092 4587455","Asss","ssss","dddddd"));
-*/
-
         loadDetails();
     }
 
@@ -133,11 +126,6 @@ public class DriverFragment extends Fragment implements SwipeRefreshLayout.OnRef
         Volley.newRequestQueue(Objects.requireNonNull(getActivity())).add(stringRequest);
     }
 
-    @Override
-    public void onRefresh() {
-        //recyclerViewAdapter.notifyDataSetChanged();
-
-    }
 
 
 

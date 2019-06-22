@@ -21,7 +21,7 @@
         android:textSize="25dp" />
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/gps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,14 +30,23 @@
         android:layout_marginTop="35dp"
         android:text="@string/please_enable_gps_for_tracking"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />
+        android:textSize="20sp" />-->
+    <Button
+        android:layout_below="@+id/usrname"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_background"
+        android:layout_margin="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/send_noti_btn"
+        android:text="Send Departure Notification"/>
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/Nrecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/gps">
+        android:layout_below="@+id/send_noti_btn">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -46,14 +55,7 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
-        android:background="@drawable/button_background"
-        android:layout_margin="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/send_noti_btn"
-        android:layout_below="@+id/Nprogressbar"
-        android:text="Send Departure Notification"/>
+
 
 
 
