@@ -25,16 +25,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class PassengerActivity extends FragmentActivity implements OnMapReadyCallback {
+public class RelativeTrackActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private static final String TAG = PassengerActivity.class.getSimpleName();
+    private static final String TAG = RelativeTrackActivity.class.getSimpleName();
     private HashMap<String, Marker> mMarkers = new HashMap<>();
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passenger);
+        setContentView(R.layout.relative_tracking_activity);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.autobus.R;
+import com.autobus.SubAdmin.subadmin_home;
+import com.autobus.SubAdmin.subadmin_login;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -27,10 +30,11 @@ import java.util.concurrent.TimeUnit;
 public class verify_phone extends AppCompatActivity {
 
 
-    private String verificationId;
+    private String verificationId ,name;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private EditText editText;
+    private TextView phone_number;
 
 
     @Override
@@ -43,10 +47,15 @@ public class verify_phone extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressbar);
         editText = findViewById(R.id.editTextCode);
+        phone_number = findViewById(R.id.phone_number);
 
         String phonenumber = getIntent().getStringExtra("phonenumber");
+        phone_number.setText(phonenumber);
+
+        name = getIntent().getStringExtra("Name");
         sendVerificationCode(phonenumber);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +87,8 @@ public class verify_phone extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Intent intent = new Intent(verify_phone.this, Bus_Details.class);
+                            Intent intent = new Intent(verify_phone.this, ChooseAction.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                             startActivity(intent);
 
                         } else {

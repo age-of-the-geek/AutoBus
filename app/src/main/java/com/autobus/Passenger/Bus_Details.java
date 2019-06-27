@@ -1,20 +1,18 @@
 package com.autobus.Passenger;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -27,18 +25,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Bus_Details extends AppCompatActivity {
 
     Toolbar toolbar;
     private static final String URL_PRODUCTS = "http://192.168.43.197/AutoBus/show_bus_details.php";
+    private static final String GET_LOGO = "http://192.168.43.197/AutoBus/add_subadmin.php?apicall=getlogo";
 
     //a list to store all the products
     List<bus_data> productList;
 
     //the recyclerview
     RecyclerView recyclerView;
+
+    String from, to;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,28 +51,33 @@ public class Bus_Details extends AppCompatActivity {
 
         toolbar = findViewById(R.id.passenger_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("AutoBus");
         if (getSupportActionBar() != null) {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            from = bundle.getString("from");
+            to = bundle.getString("to");
+
+        } else Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
 
         recyclerView = findViewById(R.id.recylcerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         //initializing the productlist
         productList = new ArrayList<>();
 
         //this method will fetch and parse json
         //to display it in recyclerview
-        loadProducts();
+        loadProducts(from, to);
     }
 
-    private void loadProducts() {
+
+    private void loadProducts(String From, String To) {
 
         /*
          * Creating a String Request
@@ -78,7 +86,7 @@ public class Bus_Details extends AppCompatActivity {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PRODUCTS,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_PRODUCTS,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -91,6 +99,10 @@ public class Bus_Details extends AppCompatActivity {
 
                                 //getting product object from json array
                                 JSONObject data = array.getJSONObject(i);
+
+                                if (data.getString("bus_from").length() == 0) {
+                                    Toast.makeText(Bus_Details.this, "No Bus Found", Toast.LENGTH_SHORT).show();
+                                }
 
                                 //adding the product to product list
                                 productList.add(new bus_data(
@@ -108,7 +120,9 @@ public class Bus_Details extends AppCompatActivity {
                                         data.getString("bus_company"),
                                         data.getString("bus_image"),
                                         data.getString("day"),
-                                        data.getString("ticket_price")
+                                        data.getString("ticket_price"),
+                                        data.getString("bus_logo")
+
                                 ));
                             }
 
@@ -128,10 +142,19 @@ public class Bus_Details extends AppCompatActivity {
 
 
                     }
-                });
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
 
-        //adding our stringrequest to queue
-        Volley.newRequestQueue(this).add(stringRequest);
+                Map<String, String> params = new HashMap<>();
+                params.put("bus_from", From);
+                params.put("bus_to", To);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 
@@ -145,9 +168,10 @@ public class Bus_Details extends AppCompatActivity {
         startActivity(intent);
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()== android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
     }

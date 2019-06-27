@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.autobus.Admin.admin_login;
 import com.autobus.Driver.driver_login;
+import com.autobus.Passenger.ChooseAction;
+import com.autobus.Passenger.GenerateQRCode;
 import com.autobus.Passenger.passenger_auth;
 import com.autobus.R;
 import com.autobus.Relative.relative_signup;

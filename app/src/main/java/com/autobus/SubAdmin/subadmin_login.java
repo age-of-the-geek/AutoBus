@@ -1,8 +1,6 @@
 package com.autobus.SubAdmin;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +16,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.autobus.Driver.Config_Driver;
 import com.autobus.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
+    String email, password, bus_company, logo;
 
 
     //boolean variable to check user is logged in or not
@@ -56,7 +58,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
         buttonLogin.setOnClickListener(this);
     }
 
-    @Override
+    /*@Override
     protected void onResume() {
         super.onResume();
         //In onresume fetching value from sharedpreference
@@ -72,14 +74,14 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
                     subadmin_home.class);
             startActivity(intent);
         }
-    }
+    }*/
 
     private void login() {
 
 
         //Getting values from edit texts
-        final String email = editTextEmail.getText().toString().trim();
-        final String password = editTextPassword.getText().toString().trim();
+        email = editTextEmail.getText().toString().trim();
+        password = editTextPassword.getText().toString().trim();
 
         //Creating a string request
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Config_subadmin.LOGIN_URL,
@@ -89,7 +91,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
                         //If we are getting success from server
                         if (response.equalsIgnoreCase(Config_subadmin.LOGIN_SUCCESS)) {
                             //Creating a shared preference
-                            SharedPreferences sharedPreferences = com.autobus.SubAdmin.subadmin_login.this.getSharedPreferences(Config_subadmin.SHARED_PREF_NAME,
+                           /* SharedPreferences sharedPreferences = com.autobus.SubAdmin.subadmin_login.this.getSharedPreferences(Config_subadmin.SHARED_PREF_NAME,
                                     Context.MODE_PRIVATE);
 
                             //Creating editor to store values to shared preferences
@@ -100,7 +102,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
                             editor.putString(Config_subadmin.EMAIL_SHARED_PREF, email);
 
                             //Saving values to editor
-                            editor.commit();
+                            editor.commit();*/
 
                             //Starting profile activity
                             Toast.makeText(com.autobus.SubAdmin.subadmin_login.this, "Login Successful", Toast.LENGTH_SHORT).show();
@@ -120,7 +122,7 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
                     public void onErrorResponse(VolleyError error) {
                         //You can handle error here if you want
                         Toast.makeText(subadmin_login.this, "Network Connection Error. Try again Later/n " +
-                                ""+error.toString(), Toast.LENGTH_SHORT).show();
+                                "" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override
@@ -140,9 +142,68 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
         requestQueue.add(stringRequest);
     }
 
+    private void load_companyName(String Email, String Password) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config_subadmin.LOAD_LOGO,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                JSONObject data = array.getJSONObject(i);
+
+                                bus_company = data.getString("bus_company");
+                                logo = data.getString("bus_logo");
+
+                                Intent intent = new Intent(subadmin_login.this, subadmin_home.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("BusCompany", bus_company);
+                                bundle.putString("Logo", logo);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(subadmin_login.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(subadmin_login.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("subadmin_uname", Email);
+                params.put("subadmin_password", Password);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
     @Override
     public void onClick(View v) {
         //Calling the tk_checker_login function
         login();
+        load_companyName(email, password);
+
     }
 }

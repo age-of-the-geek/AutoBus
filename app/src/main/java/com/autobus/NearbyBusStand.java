@@ -70,23 +70,8 @@ public class NearbyBusStand extends FragmentActivity implements OnMapReadyCallba
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
 
-            switch (menuItem.getItemId()) {
-                case R.id.bus_stop:
-                    nearByPlaces("bus_station");
-                    break;
-                case R.id.market:
-                    nearByPlaces("market");
-                    break;
-                case R.id.restaurant:
-                    nearByPlaces("restaurant");
-                    break;
-                case R.id.school:
-                    nearByPlaces("school");
-                    break;
-
-                default:
-                    break;
-
+            if (menuItem.getItemId() == R.id.bus_stop) {
+                nearByPlaces("bus_station");
             }
 
             return true;
@@ -116,24 +101,11 @@ public class NearbyBusStand extends FragmentActivity implements OnMapReadyCallba
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
 
-                                switch (placeName) {
-                                    case "bus_station":
-                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_marker));
-                                        break;
-                                    case "market":
-                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                                        break;
-                                    case "restaurant":
-                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                                        break;
-                                    case "school":
-                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                                        break;
-                                    default:
-                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                                        break;
+                                if ("bus_station".equals(placeName)) {
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_marker));
+                                } else {
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                                 }
-
 
                                 markerOptions.snippet(String.valueOf(i)); //Assign Index to marker for Selecting
                                 mMap.addMarker(markerOptions);

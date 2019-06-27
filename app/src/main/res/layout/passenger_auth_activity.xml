@@ -13,6 +13,7 @@
         android:layout_marginTop="40dp"
         android:text="Please Enter Your Phone to Verify"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:textSize="21.0sp"
         android:textStyle="bold" />
 
@@ -25,16 +26,25 @@
         android:orientation="vertical"
         android:padding="15.0dip">
 
-        <TextView
-            android:id="@id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:text="Please Choose Your Country"
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_style"
+            android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:hint="Enter your Name"
+            android:inputType="textPersonName"
+            android:padding="20dp"
             android:textAlignment="center"
-            android:textSize="21.0sp"
-            android:textStyle="bold" />
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff" />
+        />
 
         <com.hbb20.CountryCodePicker
             android:id="@+id/ccp"
@@ -64,7 +74,7 @@
             android:drawableLeft="@drawable/ic_phone_black_24dp"
             android:drawablePadding="10dp"
             android:gravity="center"
-            android:hint="Enter your number"
+            android:hint="Enter your Number"
             android:inputType="number"
             android:maxLength="11"
             android:padding="20dp"
@@ -72,7 +82,6 @@
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
         />
-
     </LinearLayout>
 
     <Button
@@ -84,10 +93,10 @@
         android:layout_marginTop="0dp"
         android:background="@drawable/button_background"
         android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
-        android:drawablePadding="10dp"
+        android:drawablePadding="5dp"
         android:padding="10dp"
         android:text="Continue"
         android:textAllCaps="false"
-        android:textColor="#ff000000"
+        android:textColor="#ffffff"
         android:textSize="22.0sp" />
 </RelativeLayout>

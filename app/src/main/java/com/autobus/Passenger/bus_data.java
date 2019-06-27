@@ -17,12 +17,15 @@ public class bus_data {
     private String bus_break_time;
     private String bus_company;
     private String ticket_price;
+    private String busLogo;
+
+
 
 
     public bus_data(String bus_number, String bus_total_seats, String bus_available_seats,
                     String bus_from, String bus_to, String bus_leaving_time, String bus_reaching_time,
                     String bus_driver_name, String bus_ticketchecker_name, String
-                            bus_break_time, String bus_company, String bus_image, String day, String ticket_price) {
+                            bus_break_time, String bus_company, String bus_image, String day, String ticket_price, String busLogo) {
 
         this.day = day;
         this.image = bus_image;
@@ -38,6 +41,11 @@ public class bus_data {
         this.bus_break_time = bus_break_time;
         this.bus_company = bus_company;
         this.ticket_price = ticket_price;
+        this.busLogo = busLogo;
+    }
+
+    public String getbusLogo() {
+        return busLogo;
     }
 
     public String getDay() {

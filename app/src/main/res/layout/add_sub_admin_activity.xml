@@ -6,6 +6,7 @@
     android:background="@drawable/bg"
     android:orientation="horizontal"
     tools:context=".Admin.AddSubAdmin">
+
     <include
         android:id="@+id/toolbar_admin2"
         layout="@layout/toolbar_default"></include>
@@ -32,8 +33,6 @@
             android:textStyle="bold" />
 
 
-
-
         <EditText
             android:id="@+id/subadmin_uname"
             android:layout_width="match_parent"
@@ -51,6 +50,7 @@
             android:padding="10dp"
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
+
         <EditText
             android:id="@+id/subadmin_password"
             android:layout_width="match_parent"
@@ -68,6 +68,7 @@
             android:padding="10dp"
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
+
         <EditText
             android:id="@+id/subadmin_id"
             android:layout_width="match_parent"
@@ -81,11 +82,12 @@
             android:drawablePadding="10dp"
             android:gravity="center"
             android:hint="ID"
-            android:maxLength="13"
             android:inputType="number"
+            android:maxLength="13"
             android:padding="10dp"
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
+
         <EditText
             android:id="@+id/subadmin_phone"
             android:layout_width="match_parent"
@@ -99,11 +101,12 @@
             android:drawablePadding="10dp"
             android:gravity="center"
             android:hint="Phone Number"
-            android:maxLength="11"
             android:inputType="phone"
+            android:maxLength="11"
             android:padding="10dp"
             android:textColor="#ffffffff"
             android:textColorHint="#ffffffff" />
+
         <EditText
             android:id="@+id/subadmin_bus_company"
             android:layout_width="match_parent"
@@ -119,22 +122,47 @@
             android:hint="Bus Company"
             android:inputType="textCapWords"
             android:padding="10dp"
-            android:textColor="#ffffffff"
-            android:textColorHint="#ffffffff" />
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff" />
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
+            <ImageView
+                android:scaleType="fitCenter"
+                android:id="@+id/bus_logo"
+                android:layout_width="0dp"
+                android:layout_height="66dp"
+                android:layout_weight="1"
+                android:src="@drawable/driver" />
+
+            <ImageView
+                android:focusable="true"
+                android:clickable="true"
+                android:id="@+id/upload_logo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="center"
+                android:src="@drawable/upload_img" />
+
+        </LinearLayout>
         <Button
             android:id="@+id/save_subadmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40.0dip"
             android:background="@drawable/button_background"
+            android:drawableStart="@drawable/add_user_image_32px"
+            android:drawablePadding="20dp"
             android:padding="12dp"
             android:text="Add Sub Admin"
             android:textAllCaps="false"
             android:textColor="#fff"
-            android:textSize="22.0dip"
-            android:drawableStart="@drawable/add_user_image_32px"
-            android:drawablePadding="20dp"/>
+            android:textSize="22.0sp" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="150dp"
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
@@ -32,18 +32,38 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                >
 
                 <!-- place one TextView and one EditText inside layout using weight property -->
 
-                <EditText
-                    android:id="@+id/bus_company"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Bus Company"
-                    android:inputType="textCapWords"
-                    android:textColorHint="#000000"
-                    android:textSize="13sp" />
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_marginStart="5dp"
+                        android:id="@+id/company_logo"
+                        android:layout_width="120dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/logo" />
+
+                    <EditText
+                        android:id="@+id/bus_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_toRightOf="@+id/company_logo"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:hint="Bus Company"
+                        android:inputType="textCapWords"
+                        android:textColorHint="#000000"
+                        android:textSize="23sp" />
+
+                </RelativeLayout>
 
             </LinearLayout>
             <!-- create a Linear Layout with horizontal orientation and weightSum property -->
@@ -59,11 +79,11 @@
                 <!-- place one TextView and one EditText inside layout using weight property -->
 
                 <EditText
-                    android:inputType="textCapWords"
                     android:id="@+id/bus_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Bus Number"
+                    android:inputType="textCapWords"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -81,11 +101,11 @@
 
 
                 <EditText
-                    android:inputType="number"
                     android:id="@+id/total_seats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Total Seats"
+                    android:inputType="number"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -103,11 +123,11 @@
 
 
                 <EditText
-                    android:inputType="number"
                     android:id="@+id/available_seats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Available Seats"
+                    android:inputType="number"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
@@ -138,7 +158,6 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:onClick="selectTime"
                     android:id="@+id/leaving_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,6 +165,7 @@
                     android:drawableEnd="@drawable/ic_arrow_drop_down_black"
                     android:focusable="false"
                     android:hint="Bus Leaving Time"
+                    android:onClick="selectTime"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
@@ -177,7 +197,6 @@
                     android:textSize="13sp" />
 
                 <EditText
-                    android:onClick="selectTime"
                     android:id="@+id/reaching_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -185,6 +204,7 @@
                     android:drawableEnd="@drawable/ic_arrow_drop_down_black"
                     android:focusable="false"
                     android:hint="Bus Reaching Time"
+                    android:onClick="selectTime"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
@@ -203,11 +223,11 @@
 
 
                 <EditText
-                    android:inputType="textPersonName"
                     android:id="@+id/driver_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Driver Name"
+                    android:inputType="textPersonName"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
@@ -225,11 +245,11 @@
 
 
                 <EditText
-                    android:inputType="textPersonName"
                     android:id="@+id/tk_checker_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ticket Checker Name"
+                    android:inputType="textPersonName"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
@@ -283,11 +303,11 @@
 
 
                 <EditText
-                    android:inputType="number"
                     android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ticket Price"
+                    android:inputType="number"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
@@ -305,22 +325,22 @@
 
 
                 <EditText
-                    android:inputType="textCapWords"
                     android:id="@+id/route_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Bus Route From"
+                    android:inputType="textCapWords"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
                 <EditText
-                    android:inputType="textCapWords"
                     android:id="@+id/route_to"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Bus Route To"
+                    android:inputType="textCapWords"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -337,11 +357,11 @@
 
 
                 <EditText
-                    android:inputType="textCapWords"
                     android:id="@+id/day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Day"
+                    android:inputType="textCapWords"
                     android:textColorHint="#000000"
                     android:textSize="13sp" />
 
@@ -354,29 +374,28 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:scaleType="fitCenter"
                     android:id="@+id/bus_image"
                     android:layout_width="0dp"
                     android:layout_height="66dp"
                     android:layout_weight="1.6"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/driver" />
 
                 <ImageButton
-                    android:foreground="?android:selectableItemBackground"
-                    android:focusable="true"
-                    android:clickable="true"
                     android:id="@+id/upload_image"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0.4"
                     android:background="#ffffff"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:selectableItemBackground"
                     android:scaleType="center"
                     android:src="@drawable/upload_img" />
 
             </LinearLayout>
 
             <Button
-                android:textColor="#ffffff"
                 android:id="@+id/btn_save"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -384,7 +403,8 @@
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/button_background"
                 android:padding="12dp"
-                android:text="Save Data" />
+                android:text="Save Data"
+                android:textColor="#ffffff" />
         </LinearLayout>
     </ScrollView>
 

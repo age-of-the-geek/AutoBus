@@ -1,64 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="@drawable/bg"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/bg">
+
     <TextView
-        android:textSize="25sp"
-        android:textStyle="bold"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="70.0dip"
         android:text="Wait For the Code "
-        android:layout_centerHorizontal="true" />
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:textSize="19.0sp"
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
         android:layout_marginLeft="20.0dip"
         android:layout_marginTop="40.0dip"
         android:layout_marginRight="20.0dip"
-        android:text="I sent you a code, It will be detected automatically but if it is not detected you can put it below manually as well"
-        android:layout_below="@id/textView"
-        android:textAlignment="center" />
+        android:text="We have sent you a code on below number, It will be detected automatically but if it is not detected you can put it below manually as well"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="19.0sp" />
 
-    <EditText
-        android:inputType="number"
-        android:background="@drawable/otp"
-        android:id="@+id/editTextCode"
+    <TextView
+        android:id="@+id/phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:maxLength="6"
-        android:digits="\ 0123456789"
         android:layout_below="@id/textView1"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="35dp"
+        android:text="03060455655"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="19.0sp" />
+
+
+    <EditText
+        android:id="@+id/editTextCode"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/phone_number"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/edit_text_style"
+        android:digits="\ 0123456789"
+        android:gravity="center"
+        android:hint="Enter 6 Digit Code"
+        android:inputType="number"
+        android:maxLength="6"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"/>
 
 
     <Button
-        android:textSize="19.0sp"
-        android:textColor="#ff000000"
         android:id="@+id/buttonSignIn"
-        android:background="@drawable/button_background"
         android:layout_width="150.0dip"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="Sign In"
         android:layout_below="@id/editTextCode"
         android:layout_centerHorizontal="true"
-        android:textAllCaps="false" />
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button_background"
+        android:text="Sign In"
+        android:textAllCaps="false"
+        android:textColor="#ff000000"
+        android:textSize="19.0sp" />
 
     <ProgressBar
         android:id="@+id/progressbar"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonSignIn"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 </RelativeLayout>

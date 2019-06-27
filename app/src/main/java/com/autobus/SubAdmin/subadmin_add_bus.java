@@ -25,13 +25,14 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.autobus.R;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,15 +48,15 @@ public class subadmin_add_bus extends AppCompatActivity {
     Calendar mCal, mCal1;
     Bitmap bitmap;
     int days, month, year, hour, minute;
-    String mCurrentDate, mCurrentTime,
+    String mCurrentDate, mCurrentTime, bus_company, logo,
             bus_leaving_stringY, bus_leaving_stringM, bus_leaving_stringD, bus_leaving_stringH, bus_leaving_stringMi, bus_leaving_string,
             bus_reaching_string, bus_reaching_stringY, bus_reaching_stringM, bus_reaching_stringD, bus_reaching_stringH, bus_reaching_stringMi,
             bus_break_string, bus_break_stringY, bus_break_stringM, bus_break_stringD, bus_break_stringH, bus_break_stringMi;
 
-    ImageView bus_image;
+    ImageView bus_image, company_logo;
     ImageButton upload_image;
     EditText bus_number, total_seats, available_seats, bus_from, bus_to, bus_leaving_time, bus_reaching_time,
-            bus_driver_name, bus_ticketchecker_name, price, bus_break_time, bus_company, day, bus_leaving_date, bus_reaching_date,
+            bus_driver_name, bus_ticketchecker_name, price, bus_break_time, bus_companytxt, day, bus_leaving_date, bus_reaching_date,
             bus_break_date;
     private Button savebtn;
 
@@ -91,9 +92,27 @@ public class subadmin_add_bus extends AppCompatActivity {
         price = findViewById(R.id.price);
         bus_break_time = findViewById(R.id.break_time);
         bus_break_date = findViewById(R.id.break_date);
-        bus_company = findViewById(R.id.bus_company);
+        bus_companytxt = findViewById(R.id.bus_company);
         day = findViewById(R.id.day);
         savebtn = findViewById(R.id.btn_save);
+        company_logo = findViewById(R.id.company_logo);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            bus_company = bundle.getString("BusCompany");
+            bus_companytxt.setText(bus_company);
+            logo = bundle.getString("Logo");
+            // Loading Image with Glide
+            RequestOptions options = new RequestOptions()
+                    .placeholder(R.drawable.logo)
+                    .error(R.drawable.logo);
+
+            Glide.with(this)
+                    .load(logo)
+                    .apply(options)
+                    .into(company_logo);
+        } else Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
+
 
        /* checking the permission
         if the permission is not given we will open setting to add permission
@@ -127,6 +146,7 @@ public class subadmin_add_bus extends AppCompatActivity {
 
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -304,16 +324,16 @@ public class subadmin_add_bus extends AppCompatActivity {
                 " : " + bus_break_stringH + ":" + bus_break_stringMi;
 
         if (bus_leaving_string.isEmpty() || bus_reaching_string.isEmpty() || bus_break_string.isEmpty()
-                || bus_company.getText().toString().isEmpty() || bus_number.getText().toString().isEmpty()
+                || bus_number.getText().toString().isEmpty()
                 || total_seats.getText().toString().isEmpty() || available_seats.getText().toString().isEmpty()
                 || bus_from.getText().toString().isEmpty() || bus_to.getText().toString().isEmpty()
                 || bus_driver_name.getText().toString().isEmpty() || price.getText().toString().isEmpty()
-                || bus_ticketchecker_name.getText().toString().isEmpty() || day.getText().toString().isEmpty()) {
+                || bus_ticketchecker_name.getText().toString().isEmpty() || day.getText().toString().isEmpty() || bus_image.getDrawable() == null) {
 
 
             Toast.makeText(this, "Please Enter All the Required Data to Proceed", Toast.LENGTH_SHORT).show();
-            bus_company.requestFocus();
-            bus_company.setError("Please Enter Data!");
+            bus_number.requestFocus();
+            bus_number.setError("Please Enter Data!");
         } else {
             String totalSeats = total_seats.getText().toString();
             String availableSeats = available_seats.getText().toString();
@@ -327,7 +347,7 @@ public class subadmin_add_bus extends AppCompatActivity {
                 } else {
                     String Price = "Rs:";
                     String FinalPrice;
-                    final String bus_companyS = this.bus_company.getText().toString().trim();
+
                     final String bus_numberS = this.bus_number.getText().toString().trim();
                     final String total_seatsS = this.total_seats.getText().toString().trim();
                     final String available_seatsS = this.available_seats.getText().toString().trim();
@@ -368,21 +388,23 @@ public class subadmin_add_bus extends AppCompatActivity {
                          * you can do it here
                          * */
                         @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
+                        protected Map<String, String> getParams() {
                             Map<String, String> params = new HashMap<>();
-                            params.put("bus_company", bus_companyS);
-                            params.put("bus_break_time", bus_break_timeS);
-                            params.put("ticket_price", FinalPrice);
-                            params.put("bus_ticketchecker_name", bus_ticketchecker_nameS);
-                            params.put("bus_driver_name", bus_driver_nameS);
-                            params.put("bus_reaching_time", bus_reaching_timeS);
-                            params.put("bus_leaving_time", bus_leaving_timeS);
+                            params.put("bus_logo", logo);
+                            params.put("bus_number", bus_numberS);
+                            params.put("bus_total_seats", total_seatsS);
+                            params.put("bus_available_seats", available_seatsS);
                             params.put("bus_from", bus_routeFromS);
                             params.put("bus_to", bus_routeToS);
-                            params.put("bus_available_seats", available_seatsS);
-                            params.put("bus_total_seats", total_seatsS);
-                            params.put("bus_number", bus_numberS);
+                            params.put("bus_leaving_time", bus_leaving_timeS);
+                            params.put("bus_reaching_time", bus_reaching_timeS);
+                            params.put("bus_driver_name", bus_driver_nameS);
+                            params.put("bus_ticketchecker_name", bus_ticketchecker_nameS);
+                            params.put("bus_break_time", bus_break_timeS);
                             params.put("day", dayS);
+                            params.put("ticket_price", FinalPrice);
+                            params.put("bus_company", bus_company);
+
                             return params;
                         }
 

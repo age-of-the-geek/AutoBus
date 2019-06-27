@@ -1,19 +1,16 @@
 package com.autobus.SubAdmin;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.autobus.R;
 import com.github.clans.fab.FloatingActionButton;
@@ -24,6 +21,7 @@ public class subadmin_home extends AppCompatActivity {
     FloatingActionMenu floatingActionMenu;
     FloatingActionButton add_ticketChecker, add_driver, add_details;
     Dialog dialog;
+    String company, logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +48,26 @@ public class subadmin_home extends AppCompatActivity {
         setSupportActionBar(toolbar_default);
         getSupportActionBar().setTitle("SubAdmin Dashboard");
         getSupportActionBar().setElevation(0);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            company = bundle.getString("BusCompany");
+            logo = bundle.getString("Logo");
+        } else Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
+
 
         //Fetching email from shared preferences
-        SharedPreferences sharedPreferences = getSharedPreferences(Config_subadmin.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        /*SharedPreferences sharedPreferences = getSharedPreferences(Config_subadmin.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(Config_subadmin.EMAIL_SHARED_PREF, "Not Available");
-        dialog = new Dialog(this);
+        dialog = new Dialog(this);*/
 
         add_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(subadmin_home.this, subadmin_add_bus.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("BusCompany", company);
+                bundle.putString("Logo", logo);
+                i.putExtras(bundle);
                 startActivity(i);
             }
         });
@@ -80,8 +88,9 @@ public class subadmin_home extends AppCompatActivity {
             }
         });
     }
+
     //Logout function
-    private void logout() {
+    /*private void logout() {
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
@@ -123,7 +132,7 @@ public class subadmin_home extends AppCompatActivity {
         alertDialog.show();
 
     }
-
+*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Adding our menu to toolbar
@@ -136,7 +145,7 @@ public class subadmin_home extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.menuLogout) {
             //calling logout method when the logout button is clicked
-            logout();
+            // logout();
         }
         return super.onOptionsItemSelected(item);
     }

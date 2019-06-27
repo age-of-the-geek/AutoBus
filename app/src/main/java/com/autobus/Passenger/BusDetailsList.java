@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import com.autobus.NearbyBusStand;
 import com.autobus.R;
 import com.autobus.SubAdmin.subadmin_add_bus;
+import com.autobus.SubAdmin.subadmin_home;
+import com.autobus.SubAdmin.subadmin_login;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.hsalf.smilerating.SmileRating;
@@ -24,11 +27,12 @@ import com.hsalf.smilerating.SmileRating;
 public class BusDetailsList extends AppCompatActivity {
 
     TextView bus_number, total_seats, available_seats, route_from, route_to, bus_leaving_time, bus_reaching_time,
-            bus_driver_name, bus_ticketchecker_name, bus_rating, bus_break_time, bus_company, bus_day, bus_ticket_price;
+            bus_driver_name, bus_ticketchecker_name, bus_break_time, bus_company, bus_day, bus_ticket_price;
     ImageView imageView;
-    ImageButton cart;
+    Button cart;
     Dialog mDialog;
     SmileRating smileRating;
+    String Aname, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +48,6 @@ public class BusDetailsList extends AppCompatActivity {
             @Override
             public void onRatingSelected(int level, boolean reselected) {
                 String rating = Integer.toString(level);
-                Intent intent = new Intent(BusDetailsList.this, subadmin_add_bus.class);
-                intent.putExtra("Rating",rating);
-                startActivity(intent);
-
                 Toast.makeText(BusDetailsList.this, rating, Toast.LENGTH_SHORT).show();
             }
         });
@@ -63,14 +63,12 @@ public class BusDetailsList extends AppCompatActivity {
         bus_driver_name = findViewById(R.id.driver_name);
         bus_ticketchecker_name = findViewById(R.id.tk_checker_name);
         bus_break_time = findViewById(R.id.break_time);
-        bus_rating = findViewById(R.id.rating);
         bus_day = findViewById(R.id.day);
         imageView = findViewById(R.id.imageView);
         cart = findViewById(R.id.cart);
 
         Toolbar toolbar_default = findViewById(R.id.toolbar_passenger);
         setSupportActionBar(toolbar_default);
-        getSupportActionBar().setTitle("AutoBus");
         if (getSupportActionBar() != null) {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -122,7 +120,10 @@ public class BusDetailsList extends AppCompatActivity {
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(BusDetailsList.this, NearbyBusStand.class);
+                Intent i = new Intent(BusDetailsList.this, BuyTicket.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Price", Sbus_ticket_price);
+                i.putExtras(bundle);
                 startActivity(i);
                 finish();
             }

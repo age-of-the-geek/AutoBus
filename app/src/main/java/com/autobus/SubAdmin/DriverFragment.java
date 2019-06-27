@@ -107,6 +107,7 @@ public class DriverFragment extends Fragment {
                             //after set data on list,call here notifiyDataSetChanged() method
 
 
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getActivity(), "Error" + e.toString(), Toast.LENGTH_SHORT).show();

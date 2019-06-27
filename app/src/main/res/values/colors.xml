@@ -14,5 +14,6 @@
     <color name="pink_pressed">#ec407a</color>
     <color name="blue_semi">#2196F3</color>
     <color name="blue_semi_presses">#57B0F7</color>
+    <color name="bt_error_red">#FF0600</color>
 
 </resources>
