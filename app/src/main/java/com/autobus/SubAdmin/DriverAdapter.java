@@ -10,10 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.autobus.R;
 
@@ -40,18 +38,19 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
         LayoutInflater inflater = LayoutInflater.from(ctx);
         View view = inflater.inflate(R.layout.driver_detail_design, null);
         final myViewHolder vHolder = new myViewHolder(view);
-
+       // recyclerViewAdapter.notifyDataSetChanged();
 
         mDialog = new Dialog(ctx);
         mDialog.setContentView(R.layout.driver_detail_dialog);
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+
         vHolder.item_list.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                DriverName= mData.get(vHolder.getAdapterPosition()).getDriverName();
-                DriverPassword= mData.get(vHolder.getAdapterPosition()).getDriverPassword();
-                credentials = "Name:"+DriverName+ "\n" + "Password:" + DriverPassword;
+                DriverName = mData.get(vHolder.getAdapterPosition()).getDriverName();
+                DriverPassword = mData.get(vHolder.getAdapterPosition()).getDriverPassword();
+                credentials = "Name:" + DriverName + "\n" + "Password:" + DriverPassword;
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share User Name & Password");
@@ -87,7 +86,6 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.myViewHold
 
         myViewHolder.tv_name.setText(mData.get(i).getDriverName());
         myViewHolder.tv_phone.setText(mData.get(i).getDriverPhone());
-
 
 
     }

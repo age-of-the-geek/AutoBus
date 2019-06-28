@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -29,19 +31,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ticket_checker_home extends AppCompatActivity {
 
     private Button scan_btn;
     private TextView usrname;
-    String TicketCode;
-    private static final String URL_QR = "http://192.168.10.12/AutoBus/read_qr.php";
-    String qrCode;
-    String[] qrcodeJson=new String[15];
-    static int counter=-1;
+    private static final String URL_QR = "http://192.168.43.197/AutoBus/read_qr.php";
+    String qrCode, nameUser, seats;
 
 
     @Override
@@ -69,7 +67,7 @@ public class ticket_checker_home extends AppCompatActivity {
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
-                loadQR();
+
 
             }
         });
@@ -85,7 +83,7 @@ public class ticket_checker_home extends AppCompatActivity {
 
     }
 
-    private void loadQR() {
+    private void loadQR(String code) {
         /*
          * Creating a String Request
          * The request type is GET defined by first parameter
@@ -94,12 +92,11 @@ public class ticket_checker_home extends AppCompatActivity {
          * In response listener we will get the JSON response as a String
          * */
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_QR,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_QR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            counter=-1;
                             //converting the string to json array object
                             JSONArray array = new JSONArray(response);
 
@@ -109,11 +106,26 @@ public class ticket_checker_home extends AppCompatActivity {
                                 //getting product object from json array
                                 JSONObject data = array.getJSONObject(i);
 
+                                nameUser = data.getString("passenger_name").trim();
+                                seats = data.getString("booked_seats").trim();
 
-                                counter++;
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ticket_checker_home.this);
+                                alertDialogBuilder.setMessage
+                                        ("Name of Passenger: " + nameUser + "\n"
+                                                + "\n" +
+                                                "Booked Seats:  " + seats + "\n"
+                                                + "\n" +
+                                                "Ticket Code: " + qrCode);
+                                alertDialogBuilder.setPositiveButton("OK",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface arg0, int arg1) {
+                                            }
+                                        });
 
-                                qrcodeJson[counter] = data.getString("ticket_code").trim();
-
+                                //Showing the alert dialog
+                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                alertDialog.show();
                             }
 
 
@@ -131,10 +143,18 @@ public class ticket_checker_home extends AppCompatActivity {
                                 + error.toString(), Toast.LENGTH_SHORT).show();
 
                     }
-                });
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
 
-        //adding our stringrequest to queue
-        Volley.newRequestQueue(this).add(stringRequest);
+                Map<String, String> params = new HashMap<>();
+                params.put("ticket_code", code);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 
@@ -149,20 +169,8 @@ public class ticket_checker_home extends AppCompatActivity {
             else {
                 qrCode = result.getContents();
 
-                for (int j = 0; j <=counter; j++) {
-
-                    if (qrCode.matches(qrcodeJson[j])) {
-
-                        Toast.makeText(ticket_checker_home.this, "Matched", Toast.LENGTH_SHORT).show();
-
-                    } else {
-
-                        Toast.makeText(ticket_checker_home.this, "not", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-
+                loadQR(qrCode);
+                //Creating an alert dialog to confirm logout
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

@@ -10,14 +10,16 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+
         <ImageView
-            android:layout_gravity="center_horizontal"
             android:id="@+id/img"
             android:layout_width="190.0dip"
             android:layout_height="190.0dip"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="0.0dip"
             android:src="@drawable/logo" />
         <TextView android:textSize="22.0sp"
+            android:textColor="#ffffff"
             android:layout_gravity="bottom|center"
             android:id="@+id/textwelcome"
             android:layout_width="wrap_content"

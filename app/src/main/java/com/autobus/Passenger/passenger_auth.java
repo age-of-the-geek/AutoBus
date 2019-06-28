@@ -125,7 +125,9 @@ public class passenger_auth extends AppCompatActivity {
                 }
                 if (user_again_name.equals(matchName)) {
                     Intent intent = new Intent(passenger_auth.this, ChooseAction.class);
-                    intent.putExtra("Name",matchName);
+                    Bundle data = new Bundle();
+                    data.putString("Name",matchName);
+                    intent.putExtras(data);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }

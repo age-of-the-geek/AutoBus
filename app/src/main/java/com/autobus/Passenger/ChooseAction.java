@@ -42,8 +42,14 @@ public class ChooseAction extends AppCompatActivity {
         TextView toolbar_title = toolbar_default.findViewById(R.id.toolbar_title);
         toolbar_title.setText("AutoBus");
         Intent i = getIntent();
-        String Name = Objects.requireNonNull(i.getExtras()).getString("Name");
-        user_name.setText(Name);
+        Bundle data = i.getExtras();
+        String Name;
+        if(data != null){
+            Name = data.getString("Name");
+            user_name.setText(Name);
+        }else{
+            Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();;
+        }
 
 
         book_option.setOnClickListener(new View.OnClickListener() {

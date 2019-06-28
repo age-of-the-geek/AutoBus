@@ -10,19 +10,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.autobus.NearbyBusStand;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.autobus.R;
-import com.autobus.SubAdmin.subadmin_add_bus;
-import com.autobus.SubAdmin.subadmin_home;
-import com.autobus.SubAdmin.subadmin_login;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.hsalf.smilerating.SmileRating;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BusDetailsList extends AppCompatActivity {
 
@@ -30,27 +41,20 @@ public class BusDetailsList extends AppCompatActivity {
             bus_driver_name, bus_ticketchecker_name, bus_break_time, bus_company, bus_day, bus_ticket_price;
     ImageView imageView;
     Button cart;
-    Dialog mDialog;
     SmileRating smileRating;
-    String Aname, name;
+    Dialog mDialog;
+    String Sbus_company;
+    RatingBar bus_rating;
+    int rate;
+    private static String URL_SEND = "http://192.168.43.197/AutoBus/save_rating.php";
+    private static String URL_GET = "http://192.168.43.197/AutoBus/get_rating.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bus_detail_list);
 
-        mDialog = new Dialog(this);
-        mDialog.setContentView(R.layout.rating_dialog);
-        mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        smileRating = mDialog.findViewById(R.id.smile_rating);
-        mDialog.show();
-        smileRating.setOnRatingSelectedListener(new SmileRating.OnRatingSelectedListener() {
-            @Override
-            public void onRatingSelected(int level, boolean reselected) {
-                String rating = Integer.toString(level);
-                Toast.makeText(BusDetailsList.this, rating, Toast.LENGTH_SHORT).show();
-            }
-        });
+
         bus_ticket_price = findViewById(R.id.bus_ticket_price);
         bus_company = findViewById(R.id.bus_company);
         bus_number = findViewById(R.id.bus_number);
@@ -66,6 +70,7 @@ public class BusDetailsList extends AppCompatActivity {
         bus_day = findViewById(R.id.day);
         imageView = findViewById(R.id.imageView);
         cart = findViewById(R.id.cart);
+        bus_rating = findViewById(R.id.bus_rating);
 
         Toolbar toolbar_default = findViewById(R.id.toolbar_passenger);
         setSupportActionBar(toolbar_default);
@@ -77,7 +82,7 @@ public class BusDetailsList extends AppCompatActivity {
 
         // Recieve data
         Intent intent = getIntent();
-        String Sbus_company = intent.getExtras().getString("Company");
+        Sbus_company = intent.getExtras().getString("Company");
         String Sbus_number = intent.getExtras().getString("Number");
         String Stotal_seats = intent.getExtras().getString("TotalSeats");
         String Savailable_seats = intent.getExtras().getString("AvailableSeats");
@@ -92,6 +97,7 @@ public class BusDetailsList extends AppCompatActivity {
         String Sbus_ticket_price = intent.getExtras().getString("TicketPrice");
         String bus_imageView = intent.getExtras().getString("Image");
 
+        getRating(Sbus_company);
         // Loading Image with Glide
         RequestOptions options = new RequestOptions()
                 .placeholder(R.drawable.logo)
@@ -131,11 +137,129 @@ public class BusDetailsList extends AppCompatActivity {
 
     }
 
+    private void getRating(String company) {
+        /*
+         * Creating a String Request
+         * The request type is GET defined by first parameter
+         * The URL is defined in the second parameter
+         * Then we have a Response Listener and a Error Listener
+         * In response listener we will get the JSON response as a String
+         * */
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_GET,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                JSONObject data = array.getJSONObject(i);
+
+                                String rating = data.getString("rating");
+                                rate = Integer.parseInt(rating);
+                                bus_rating.setRating(Float.parseFloat(rating));
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(BusDetailsList.this, "Error"
+                                    + e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(BusDetailsList.this, "Error"
+                                + error.toString(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("company_name", company);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!isTaskRoot()) {
+            mDialog = new Dialog(this);
+            mDialog.setContentView(R.layout.rating_dialog);
+            mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            smileRating = mDialog.findViewById(R.id.smile_rating);
+            mDialog.show();
+            smileRating.setOnRatingSelectedListener(new SmileRating.OnRatingSelectedListener() {
+                @Override
+                public void onRatingSelected(int level, boolean reselected) {
+                    String rating = Integer.toString(level);
+                    saveRating(Sbus_company, rating);
+                    mDialog.dismiss();
+                }
+            });
+        } else super.onBackPressed();
+    }
+
+    private void saveRating(String sbus_company, String rating) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEND,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+
+                            if (success.equals("1")) {
+
+                                Toast.makeText(BusDetailsList.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(BusDetailsList.this, "Error" + e.toString(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(BusDetailsList.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("company_name", sbus_company);
+                params.put("rating", rating);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
     }
 
 }

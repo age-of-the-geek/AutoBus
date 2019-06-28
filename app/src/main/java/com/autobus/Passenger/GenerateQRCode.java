@@ -1,6 +1,7 @@
 package com.autobus.Passenger;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -55,10 +56,11 @@ public class GenerateQRCode extends AppCompatActivity {
     String ticketCode = "";
     String ticket = "ticket#";
     int ticketCodelength = 5;
-    int quantity;
+    String quantity;
+    int q;
     Random random = new Random();
     char[] randomArray = new char[ticketCodelength];
-    public String finalTicketCode, value;
+    public String finalTicketCode, value, bookedSeats;
     OutputStream outputStream;
     Bitmap bitmap;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
@@ -88,10 +90,12 @@ public class GenerateQRCode extends AppCompatActivity {
 
             }
         }
-        Bundle bundle;
-
-        bundle = getIntent().getExtras();
-        quantity = bundle.getInt("Quantity");
+        Intent i = getIntent();
+        Bundle bundle = i.getExtras();
+        if (bundle != null) {
+            quantity = bundle.getString("Quantity");
+            bookedSeats = bundle.getString("Seats");
+        } else Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
 
         ref.child("userName").addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,32 +116,11 @@ public class GenerateQRCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                for (int j = 0; j <= quantity; j++) {
-                    for (int i = 0; i < ticketCodelength; i++) {
-                        randomArray[i] = characters.charAt(random.nextInt(characters.length()));
+                q = Integer.parseInt(quantity);
 
-                        for (int k = 0; k < randomArray.length; k++) {
-                            ticketCode += randomArray[i];
-                        }
-
-                        finalTicketCode = ticket + ticketCode;
-
-                        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-                        BitMatrix bitMatrix = null;
-                        try {
-                            bitMatrix = multiFormatWriter.encode(finalTicketCode, BarcodeFormat.QR_CODE, 250, 250);
-                        } catch (WriterException e) {
-                            e.printStackTrace();
-                        }
-                        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                        bitmap = barcodeEncoder.createBitmap(bitMatrix);
-
-                        uploadBitmap(bitmap);
-
-                    }
+                for (int j = 0; j < q; j++) {
+                    saveQR();
                 }
-
-
             }
         });
 
@@ -192,6 +175,37 @@ public class GenerateQRCode extends AppCompatActivity {
 
     }
 
+    private void generateRandom() {
+        for (int i = 0; i < ticketCodelength; i++) {
+            randomArray[i] = characters.charAt(random.nextInt(characters.length()));
+        }
+        for (char c : randomArray) {
+            ticketCode += c;
+        }
+        finalTicketCode = ticket + ticketCode;
+        Toast.makeText(this, finalTicketCode, Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void saveQR() {
+
+        generateRandom();
+
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        BitMatrix bitMatrix = null;
+        try {
+            bitMatrix = multiFormatWriter.encode(finalTicketCode, BarcodeFormat.QR_CODE, 250, 250);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+        bitmap = barcodeEncoder.createBitmap(bitMatrix);
+
+        uploadBitmap(bitmap, finalTicketCode);
+
+
+    }
+
 
     /*
      * The method is taking Bitmap as an argument
@@ -210,7 +224,7 @@ public class GenerateQRCode extends AppCompatActivity {
 
     }
 
-    private void uploadBitmap(final Bitmap bitmap) {
+    private void uploadBitmap(final Bitmap bitmap, final String code) {
 
         //Toast.makeText(this, finalName, Toast.LENGTH_SHORT).show();
         //our custom volley request
@@ -243,8 +257,9 @@ public class GenerateQRCode extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("ticket_code", finalTicketCode);
+                params.put("ticket_code", code);
                 params.put("passenger_name", value);
+                params.put("booked_seats", bookedSeats);
 
                 return params;
             }
@@ -264,4 +279,6 @@ public class GenerateQRCode extends AppCompatActivity {
         //adding the request to volley
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
+
+
 }

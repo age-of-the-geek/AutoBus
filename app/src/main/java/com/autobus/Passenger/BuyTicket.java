@@ -283,9 +283,11 @@ public class BuyTicket extends AppCompatActivity implements View.OnClickListener
                     public void onResponse(String response) {
                         if (response.toString().contains("Successful")) {
                             Toast.makeText(BuyTicket.this, "Payment Success", Toast.LENGTH_SHORT).show();
+                            String q = Integer.toString(quantity);
                             Intent i = new Intent(BuyTicket.this, GenerateQRCode.class);
                             Bundle bundle = new Bundle();
-                            bundle.putInt("Quantity", quantity);
+                            bundle.putString("Quantity", q);
+                            bundle.putString("Seats", selectedIds);
                             i.putExtras(bundle);
                             startActivity(i);
                         } else {
@@ -400,4 +402,5 @@ public class BuyTicket extends AppCompatActivity implements View.OnClickListener
             finish();
         return super.onOptionsItemSelected(item);
     }
+
 }

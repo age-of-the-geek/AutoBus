@@ -1,10 +1,14 @@
 package com.autobus.SubAdmin;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -52,13 +56,16 @@ public class subadmin_home extends AppCompatActivity {
         if (bundle != null) {
             company = bundle.getString("BusCompany");
             logo = bundle.getString("Logo");
-        } else Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
+        } else Toast.makeText(this, "Welcome Back Please Enter UserName & Password to verify", Toast.LENGTH_SHORT).show();
+        {
+
+        }
 
 
         //Fetching email from shared preferences
-        /*SharedPreferences sharedPreferences = getSharedPreferences(Config_subadmin.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString(Config_subadmin.EMAIL_SHARED_PREF, "Not Available");
-        dialog = new Dialog(this);*/
+       /* SharedPreferences sharedPreferences = getSharedPreferences(Config_subadmin.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString(Config_subadmin.EMAIL_SHARED_PREF, "Not Available");*/
+        dialog = new Dialog(this);
 
         add_details.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +96,8 @@ public class subadmin_home extends AppCompatActivity {
         });
     }
 
-    //Logout function
-    /*private void logout() {
+   /* //Logout function
+    private void logout() {
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
@@ -111,7 +118,7 @@ public class subadmin_home extends AppCompatActivity {
                         editor.putString(Config_subadmin.EMAIL_SHARED_PREF, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting subadmin activity
                         Intent intent = new Intent(subadmin_home.this, subadmin_login.class);
@@ -132,8 +139,7 @@ public class subadmin_home extends AppCompatActivity {
         alertDialog.show();
 
     }
-*/
-    @Override
+*/    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Adding our menu to toolbar
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -145,7 +151,7 @@ public class subadmin_home extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.menuLogout) {
             //calling logout method when the logout button is clicked
-            // logout();
+             //logout();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -195,9 +195,13 @@ public class NearbyBusStand extends FragmentActivity implements OnMapReadyCallba
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-
-                URLEndPoints.currentResults = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
-                startActivity(new Intent(NearbyBusStand.this, PlaceDetail.class));
+                if (marker == null){
+                    Toast.makeText(NearbyBusStand.this, "Search Nearby Places First", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    URLEndPoints.currentResults = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
+                    startActivity(new Intent(NearbyBusStand.this, PlaceDetail.class));
+                }
                 return true;
             }
         });

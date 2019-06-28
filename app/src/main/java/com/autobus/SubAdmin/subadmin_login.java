@@ -1,6 +1,8 @@
 package com.autobus.SubAdmin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.autobus.Driver.Config_Driver;
 import com.autobus.R;
 
 import org.json.JSONArray;
@@ -90,8 +93,8 @@ public class subadmin_login extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
                         //If we are getting success from server
                         if (response.equalsIgnoreCase(Config_subadmin.LOGIN_SUCCESS)) {
-                            //Creating a shared preference
-                           /* SharedPreferences sharedPreferences = com.autobus.SubAdmin.subadmin_login.this.getSharedPreferences(Config_subadmin.SHARED_PREF_NAME,
+                            /*//Creating a shared preference
+                            SharedPreferences sharedPreferences = com.autobus.SubAdmin.subadmin_login.this.getSharedPreferences(Config_subadmin.SHARED_PREF_NAME,
                                     Context.MODE_PRIVATE);
 
                             //Creating editor to store values to shared preferences
