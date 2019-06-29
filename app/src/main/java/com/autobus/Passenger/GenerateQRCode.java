@@ -10,9 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -50,17 +48,16 @@ import java.util.Random;
 
 public class GenerateQRCode extends AppCompatActivity {
 
-    Button generate, saveQRImage;
-    ImageView qrImage;
     String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
     String ticketCode = "";
     String ticket = "ticket#";
     int ticketCodelength = 5;
     String quantity;
+    TextView ticket_quantity, money, seats;
     int q;
     Random random = new Random();
     char[] randomArray = new char[ticketCodelength];
-    public String finalTicketCode, value, bookedSeats;
+    public String finalTicketCode, value, bookedSeats, price;
     OutputStream outputStream;
     Bitmap bitmap;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
@@ -71,9 +68,9 @@ public class GenerateQRCode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.generate_qr_activity);
 
-        generate = findViewById(R.id.generateQR);
-        saveQRImage = findViewById(R.id.saveQRImage);
-        qrImage = findViewById(R.id.qrcode);
+        ticket_quantity = findViewById(R.id.ticket_quantity);
+        money = findViewById(R.id.ticket_price_total);
+        seats = findViewById(R.id.seats);
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(GenerateQRCode.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
@@ -95,6 +92,11 @@ public class GenerateQRCode extends AppCompatActivity {
         if (bundle != null) {
             quantity = bundle.getString("Quantity");
             bookedSeats = bundle.getString("Seats");
+            price = bundle.getString("Price");
+
+            ticket_quantity.setText(quantity);
+            money.setText(price);
+            seats.setText(bookedSeats);
         } else Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
 
         ref.child("userName").addValueEventListener(new ValueEventListener() {
@@ -112,67 +114,11 @@ public class GenerateQRCode extends AppCompatActivity {
             }
         });
 
-        generate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        q = Integer.parseInt(quantity);
 
-                q = Integer.parseInt(quantity);
-
-                for (int j = 0; j < q; j++) {
-                    saveQR();
-                }
-            }
-        });
-
-        saveQRImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File path = Environment.getExternalStorageDirectory();
-                File dir = new File(path.getAbsoluteFile() + "/AutoBus/");
-                dir.mkdir();
-
-                File file = new File(dir, finalTicketCode + ".png");
-
-                try {
-                    outputStream = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                    Toast.makeText(GenerateQRCode.this, "Image Saved to Folder AutoBus", Toast.LENGTH_SHORT).show();
-                } catch (java.io.IOException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    if (outputStream != null)
-                        outputStream.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    if (outputStream != null)
-                        outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-                /*Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("image/png");
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes);
-                File f = new File(Environment.getExternalStorageDirectory() + File.separator + "temporary_file.png");
-                try {
-                    f.createNewFile();
-                    FileOutputStream fo = new FileOutputStream(f);
-                    fo.write(bytes.toByteArray());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/temporary_file.png"));
-                startActivity(Intent.createChooser(share, "Share Image"));*/
-
-            }
-        });
-
+        for (int j = 0; j < q; j++) {
+            saveQR();
+        }
     }
 
     private void generateRandom() {
@@ -183,7 +129,7 @@ public class GenerateQRCode extends AppCompatActivity {
             ticketCode += c;
         }
         finalTicketCode = ticket + ticketCode;
-        Toast.makeText(this, finalTicketCode, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, finalTicketCode, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -202,10 +148,40 @@ public class GenerateQRCode extends AppCompatActivity {
         bitmap = barcodeEncoder.createBitmap(bitMatrix);
 
         uploadBitmap(bitmap, finalTicketCode);
+        saveToInternalStorage(bitmap, finalTicketCode);
 
 
     }
 
+    public void saveToInternalStorage(Bitmap bitmap, String code) {
+        File path = Environment.getExternalStorageDirectory();
+        File dir = new File(path.getAbsoluteFile() + "/AutoBus/");
+        dir.mkdir();
+
+        File file = new File(dir, code + ".png");
+
+        try {
+            outputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+            Toast.makeText(GenerateQRCode.this, "Images of QR-Code are Saved to Folder AutoBus", Toast.LENGTH_SHORT).show();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (outputStream != null)
+                outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (outputStream != null)
+                outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /*
      * The method is taking Bitmap as an argument

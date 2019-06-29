@@ -40,10 +40,10 @@ public class driver_login extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.driver_login_activity);
 
         //Initializing views
-        editTextEmail = (EditText) findViewById(R.id.UEmail);
-        editTextPassword = (EditText) findViewById(R.id.UPassword);
+        editTextEmail = (EditText) findViewById(R.id.DriverEmail);
+        editTextPassword = (EditText) findViewById(R.id.DriverPassword);
 
-        buttonLogin = (Button) findViewById(R.id.loginbtn);
+        buttonLogin = (Button) findViewById(R.id.Drivebtn);
 
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "font/Raleway-Regular.ttf");
@@ -98,7 +98,7 @@ public class driver_login extends AppCompatActivity implements View.OnClickListe
                             editor.putString(Config_Driver.EMAIL_SHARED_PREF, email);
 
                             //Saving values to editor
-                            editor.commit();
+                            editor.apply();
 
                             //Starting profile activity
                             Toast.makeText(driver_login.this, "Login Successful", Toast.LENGTH_SHORT).show();

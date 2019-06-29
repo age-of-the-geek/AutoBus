@@ -29,7 +29,7 @@ public class NotificationHelper {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, CHANNEL_ID)
-                        .setSmallIcon(R.drawable.logo)
+                        .setSmallIcon(R.drawable.ic_tracker)
                         .setContentTitle(title)
                         .setContentText(body)
                         .setSound(defaultSoundUri)

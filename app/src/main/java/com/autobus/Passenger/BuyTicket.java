@@ -281,6 +281,7 @@ public class BuyTicket extends AppCompatActivity implements View.OnClickListener
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        String totalAmount = Integer.toString(totalPrice);
                         if (response.toString().contains("Successful")) {
                             Toast.makeText(BuyTicket.this, "Payment Success", Toast.LENGTH_SHORT).show();
                             String q = Integer.toString(quantity);
@@ -288,6 +289,7 @@ public class BuyTicket extends AppCompatActivity implements View.OnClickListener
                             Bundle bundle = new Bundle();
                             bundle.putString("Quantity", q);
                             bundle.putString("Seats", selectedIds);
+                            bundle.putString("Price", totalAmount);
                             i.putExtras(bundle);
                             startActivity(i);
                         } else {

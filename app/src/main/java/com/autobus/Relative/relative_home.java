@@ -7,12 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.autobus.Admin.Config_Admin;
 import com.autobus.Driver.User;
-import com.autobus.RelativeTrackActivity;
 import com.autobus.R;
+import com.autobus.RelativeTrackActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,14 +32,18 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class relative_home extends AppCompatActivity {
 
     TextView textName;
     FirebaseAuth mAuth;
     Button track;
+    EditText code;
+    public static final String MATCH_URL = "http://192.168.43.197/AutoBus/match_qr.php";
     public static final int LOGIN_PERMISSION = 1000;
     public static final String NODE_USERS = "users";
-
 
 
     @Override
@@ -43,11 +56,18 @@ public class relative_home extends AppCompatActivity {
 
 
         textName = findViewById(R.id.textViewName);
+        code = findViewById(R.id.ticket_code);
         track = findViewById(R.id.track);
+
         track.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(relative_home.this, RelativeTrackActivity.class));
+
+                String Tcode = code.getText().toString().trim();
+                if (!Tcode.isEmpty())
+                    matchQR(Tcode);
+                else
+                    Toast.makeText(relative_home.this, "Enter Code", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -77,6 +97,50 @@ public class relative_home extends AppCompatActivity {
                 });
     }
 
+    private void matchQR(String code) {
+
+        //Creating a string request
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, MATCH_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //If we are getting success from server
+                        if (response.equalsIgnoreCase(Config_Admin.LOGIN_SUCCESS)) {
+
+
+                            //Starting profile activity
+                            Toast.makeText(relative_home.this, "Match Successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(relative_home.this, RelativeTrackActivity.class));
+                        } else {
+                            //If the server response is not success
+                            //Displaying an error message on toast
+                            Toast.makeText(relative_home.this,
+                                    "Invalid Code", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(relative_home.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+                        //You can handle error here if you want
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                //Adding parameters to request
+                params.put("ticket_code", code);
+
+                //returning parameter
+                return params;
+            }
+        };
+
+        //Adding the string request to the queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
 
     private void saveToken(String token) {
@@ -101,12 +165,12 @@ public class relative_home extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+//
         //if the user is not logged in
         //opening the login activity
-        if (mAuth.getCurrentUser() == null) {
+        /*if (mAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(relative_home.this, relative_signup.class));
-        }
+        }*/
     }
 }

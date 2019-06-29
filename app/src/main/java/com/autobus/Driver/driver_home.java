@@ -9,14 +9,11 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,17 +24,12 @@ import android.widget.Toast;
 
 import com.autobus.Activities.landing_screen;
 import com.autobus.R;
-import com.autobus.Relative.relative_home;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,10 +43,10 @@ public class driver_home extends AppCompatActivity {
     private static final String CHANNEL_DESC = "AutoBus Notifications";
     private List<User> userList;
     FirebaseAuth mAuth;
-    Button send_noti_btn;
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    Button track;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +59,7 @@ public class driver_home extends AppCompatActivity {
 
         usrname = findViewById(R.id.usrname);
         progressBar = findViewById(R.id.Nprogressbar);
-        send_noti_btn = findViewById(R.id.send_noti_btn);
+        track = findViewById(R.id.track_btn);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -75,16 +67,15 @@ public class driver_home extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Config_Driver.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(Config_Driver.EMAIL_SHARED_PREF, "Not Available");
 
-        send_noti_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(driver_home.this, TrackerActivity.class);
-                startActivity(i);
-            }
-        });
         //Showing the current logged in email to textview
         usrname.setText("User: " + email);
         loadUsers();
+        track.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(driver_home.this, TrackerActivity.class));
+            }
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
@@ -194,9 +185,9 @@ public class driver_home extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Intent intent = new Intent(driver_home.this, landing_screen.class);
         startActivity(intent);
         finish();

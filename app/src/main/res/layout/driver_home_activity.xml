@@ -4,10 +4,20 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <include
-        android:id="@+id/toolbar_driver"
-        layout="@layout/toolbar_default"></include>
-
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:id="@+id/toolbar_driver">
+    </android.support.v7.widget.Toolbar>
+    <Button
+        android:id="@+id/track_btn"
+        android:layout_marginTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable Location"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/button_background"/>
 
     <TextView
         android:id="@+id/usrname"
@@ -21,25 +31,16 @@
         android:textSize="25dp" />
 
 
-    <!--<TextView
-        android:id="@+id/gps"
+    <TextView
+        android:id="@+id/send_noti_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usrname"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="@string/please_enable_gps_for_tracking"
+        android:text="Click Email To Send Notification"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />-->
-    <Button
-        android:layout_below="@+id/usrname"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/button_background"
-        android:layout_margin="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/send_noti_btn"
-        android:text="Send Departure Notification"/>
+        android:textSize="20sp" />
 
 
     <android.support.v7.widget.RecyclerView
@@ -52,12 +53,9 @@
 
     <ProgressBar
         android:id="@+id/Nprogressbar"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
 
 </RelativeLayout>

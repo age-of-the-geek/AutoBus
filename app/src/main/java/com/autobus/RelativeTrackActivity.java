@@ -49,7 +49,7 @@ public class RelativeTrackActivity extends FragmentActivity implements OnMapRead
     }
 
     private void loginToFirebase() {
-        String email = "service@oppo.pk";
+        String email = "haji@mail.com";
         String password = "000000";
         // Authenticate with Firebase and subscribe to updates
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
@@ -119,6 +119,6 @@ public class RelativeTrackActivity extends FragmentActivity implements OnMapRead
         for (Marker marker : mMarkers.values()) {
             builder.include(marker.getPosition());
         }
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 300));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 200));
     }
 }

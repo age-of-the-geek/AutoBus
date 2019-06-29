@@ -35,7 +35,7 @@
             android:src="@drawable/driver" />
 
         <EditText
-            android:id="@+id/UEmail"
+            android:id="@+id/DriverEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
@@ -53,7 +53,7 @@
             android:textColorHint="#ffffffff" />
 
         <EditText
-            android:id="@+id/UPassword"
+            android:id="@+id/DriverPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
@@ -70,7 +70,7 @@
             android:textColorHint="#ffffffff" />
 
         <Button
-            android:id="@id/loginbtn"
+            android:id="@+id/Drivebtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"

@@ -2,6 +2,7 @@ package com.autobus.Relative;
 
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.autobus.R;
@@ -57,7 +59,6 @@ public class relative_signup extends AppCompatActivity {
     static int PReqCode = 1;
     static int REQUESTCODE = 1;
     Uri pickedimguri;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     Button signInButton;
     private GoogleApiClient mGoogleApiClient;
     ProgressDialog progressDialog;
@@ -97,21 +98,6 @@ public class relative_signup extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
         mAuth = FirebaseAuth.getInstance();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (firebaseAuth.getCurrentUser() != null) {
-
-                    final FirebaseUser user = firebaseAuth.getCurrentUser();
-                    Toast.makeText(relative_signup.this, "Now you are logged In " + firebaseAuth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(relative_signup.this, relative_home.class);
-                    startActivity(intent);
-                    finish();
-
-                }
-            }
-        };
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,7 +251,12 @@ public class relative_signup extends AppCompatActivity {
 
     private void updateUI() {
 
-        Intent login = new Intent(getApplicationContext(), tk_checker_login.class);
+        ProgressDialog dialog;
+        dialog = new ProgressDialog(relative_signup.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        dialog.setCancelable(true);
+        dialog.setMessage("Please Wait");
+        dialog.show();
+        Intent login = new Intent(getApplicationContext(), relative_login.class);
         startActivity(login);
         finish();
     }
@@ -330,15 +321,12 @@ public class relative_signup extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {

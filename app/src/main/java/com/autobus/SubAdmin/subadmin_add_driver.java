@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class subadmin_add_driver extends AppCompatActivity {
 
-    private static String URL_SEND = "http://192.168.10.11/AutoBus/add_driver.php";
+    private static String URL_SEND = "http://192.168.43.197/AutoBus/add_driver.php";
     EditText driver_uname, driver_password, driver_id, driver_phone, bus_number;
     Button add_driver;
 

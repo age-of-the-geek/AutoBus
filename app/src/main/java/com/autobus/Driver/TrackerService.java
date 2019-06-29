@@ -75,7 +75,7 @@ public class TrackerService extends Service {
     private void loginToFirebase() {
         // Functionality coming next step
         // Authenticate with Firebase, and request location updates
-        String email = getString(R.string.firebase_email);
+        String email = "haji@mail.com";
         String password = getString(R.string.firebase_password);
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
                 email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>(){

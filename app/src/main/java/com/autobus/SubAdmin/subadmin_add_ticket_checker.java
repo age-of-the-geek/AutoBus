@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class subadmin_add_ticket_checker extends AppCompatActivity {
 
-    private static String URL_SEND = "http://192.168.10.5/AutoBus/add_ticket_checker.php";
+    private static String URL_SEND = "http://192.168.43.197/AutoBus/add_ticket_checker.php";
     EditText ticket_checker_uname, ticket_checker_password, ticket_checker_id, ticket_checker_phone, bus_number;
     Button add_ticket_checker;
 
